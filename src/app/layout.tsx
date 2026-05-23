@@ -50,7 +50,21 @@ export default function RootLayout({
       className={`${manrope.variable} ${bebasNeue.variable} ${geistMono.variable} dark`}
     >
       <body className="min-h-screen flex flex-col">
-        <div className="mesh-bg" aria-hidden />
+        {/* Fixed atmospheric background photo */}
+        <div
+          aria-hidden
+          className="fixed inset-0 z-[-2] bg-cover bg-no-repeat"
+          style={{
+            backgroundImage: "url('/hero-bg.jpg')",
+            backgroundPosition: "center top",
+          }}
+        />
+        {/* Dark scrim for legibility (90% surface) */}
+        <div
+          aria-hidden
+          className="fixed inset-0 z-[-1]"
+          style={{ background: "rgba(19, 19, 19, 0.90)" }}
+        />
         <div className="grain" aria-hidden />
         <Navbar />
         <main className="flex-1">{children}</main>
