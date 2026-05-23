@@ -7,17 +7,44 @@ const ease = [0.16, 1, 0.3, 1] as const;
 
 const tagline = "I'm Prohorj, a Full-Stack Developer";
 
+// Split headline into words so each can animate individually
+const headlineParts: Array<{ text: string; accent?: boolean }> = [
+  { text: "Crafting" },
+  { text: "digital" },
+  { text: "products" },
+  { text: "with" },
+  { text: "obsessive", accent: true },
+  { text: "attention" },
+  { text: "to" },
+  { text: "detail." },
+];
+
+const wordVariants = {
+  hidden: { opacity: 0, y: 28, filter: "blur(8px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.9, ease },
+  },
+};
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.09, delayChildren: 0.25 },
+  },
+};
+
 export function Hero() {
   return (
     <>
       <section className="hero-orbs relative flex min-h-[90vh] flex-col items-center justify-center px-5 pb-32 pt-40 text-center sm:px-8 sm:pt-48 lg:px-20">
-        <div className="absolute inset-0 grid-pattern opacity-30" aria-hidden />
-
         {/* Availability pill */}
         <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease }}
+          initial={{ opacity: 0, y: 10, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.7, ease, delay: 0.1 }}
           className="glass-elevated mb-8 inline-flex items-center gap-2 rounded-full px-4 py-1.5"
         >
           <span className="relative flex h-2 w-2">
@@ -29,23 +56,41 @@ export function Hero() {
           </span>
         </motion.div>
 
-        {/* Headline — Bebas Neue */}
+        {/* Headline — word-by-word staggered reveal */}
         <motion.h1
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease, delay: 0.05 }}
-          className="display mx-auto mb-6 max-w-4xl text-[clamp(3.5rem,10vw,7.5rem)] leading-[0.95] text-foreground"
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+          className="display mx-auto mb-6 max-w-4xl text-[clamp(2.75rem,8vw,6rem)] leading-[0.95] text-foreground"
+          aria-label="Crafting digital products with obsessive attention to detail."
         >
-          Crafting digital products with{" "}
-          <span className="text-glow text-accent">obsessive</span> attention to
-          detail.
+          {headlineParts.map((word, i) => (
+            <motion.span
+              key={i}
+              variants={wordVariants}
+              className={`mr-[0.25em] inline-block ${
+                word.accent
+                  ? "text-glow text-accent text-[0.78em] align-middle"
+                  : ""
+              }`}
+              style={{
+                textShadow:
+                  word.accent
+                    ? undefined
+                    : "0 2px 24px rgba(0,0,0,0.6)",
+              }}
+            >
+              {word.text}
+            </motion.span>
+          ))}
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease, delay: 0.15 }}
+          transition={{ duration: 0.8, ease, delay: 1.2 }}
           className="mx-auto mb-10 max-w-2xl text-base leading-relaxed text-on-surface-variant sm:text-lg"
+          style={{ textShadow: "0 2px 12px rgba(0,0,0,0.5)" }}
         >
           I design and build polished web experiences end to end. From the
           database to the last pixel.
@@ -55,28 +100,34 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease, delay: 0.25 }}
+          transition={{ duration: 0.7, ease, delay: 1.4 }}
           className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
         >
-          <a
+          <motion.a
             href="#projects"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ duration: 0.3, ease }}
             className="btn-primary flex items-center gap-2 rounded-full px-8 py-3.5 text-sm"
           >
             <Eye className="h-4 w-4" />
             See my work
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href="mailto:praharj123barman@gmail.com"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ duration: 0.3, ease }}
             className="btn-ghost flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-medium"
           >
             Let&apos;s talk
-          </a>
+          </motion.a>
         </motion.div>
       </section>
 
       {/* Single marquee — Bebas Neue scrolling tagline */}
-      <div className="mb-24 flex w-full overflow-hidden whitespace-nowrap border-y border-white/5 bg-surface-container py-4">
-        <div className="marquee-track items-center gap-8 opacity-50">
+      <div className="mb-24 flex w-full overflow-hidden whitespace-nowrap border-y border-white/5 bg-surface-container/80 py-4 backdrop-blur-md">
+        <div className="marquee-track items-center gap-8 opacity-60">
           {Array.from({ length: 12 }).map((_, i) => (
             <span
               key={`m-${i}`}

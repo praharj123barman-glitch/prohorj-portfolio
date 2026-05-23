@@ -72,23 +72,35 @@ export function Projects() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`Visit ${p.name} live site`}
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, ease, delay: 0.15 + i * 0.07 }}
+              whileHover={{ y: -6 }}
+              transition={{ duration: 0.7, ease, delay: 0.15 + i * 0.08 }}
               className="group block"
+              style={{ perspective: 1000 }}
             >
-              <div className="glass-card relative mb-4 aspect-[16/10] overflow-hidden rounded-2xl">
+              <motion.div
+                whileHover={{ rotateX: 2, rotateY: -2, scale: 1.01 }}
+                transition={{ duration: 0.5, ease }}
+                className="glass-card relative mb-4 aspect-[16/10] overflow-hidden rounded-2xl"
+                style={{ transformStyle: "preserve-3d" }}
+              >
                 <Image
                   src={p.image}
                   alt={p.name}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                  className="object-cover object-top transition-transform duration-[1200ms] ease-out group-hover:scale-[1.08]"
                   priority={i < 2}
                 />
                 {/* bottom-up scrim for legibility */}
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-surface-container-low to-transparent opacity-50" />
-              </div>
+                {/* shimmer sweep on hover */}
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-1000 ease-out group-hover:translate-x-full"
+                />
+              </motion.div>
               <h3 className="text-lg font-bold text-foreground transition-colors group-hover:text-accent">
                 {p.name}
               </h3>

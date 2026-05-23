@@ -50,10 +50,10 @@ export default function RootLayout({
       className={`${manrope.variable} ${bebasNeue.variable} ${geistMono.variable} dark`}
     >
       <body className="min-h-screen flex flex-col">
-        {/* Fixed atmospheric background photo */}
+        {/* Fixed atmospheric background photo with slow Ken Burns zoom */}
         <div
           aria-hidden
-          className="fixed inset-0 z-[-2] bg-cover bg-no-repeat"
+          className="ken-burns fixed inset-0 z-[-2] bg-cover bg-no-repeat"
           style={{
             backgroundImage: "url('/hero-bg.jpg')",
             backgroundPosition: "center top",
@@ -68,6 +68,8 @@ export default function RootLayout({
               "linear-gradient(180deg, rgba(19,19,19,0.35) 0%, rgba(19,19,19,0.70) 55%, rgba(19,19,19,0.92) 100%)",
           }}
         />
+        {/* Cinematic vignette — letterbox feel */}
+        <div className="cinematic-vignette" aria-hidden />
         <div className="grain" aria-hidden />
         <Navbar />
         <main className="flex-1">{children}</main>
