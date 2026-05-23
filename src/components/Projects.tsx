@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Code2 } from "lucide-react";
 
@@ -12,9 +13,8 @@ type Project = {
   tags: string[];
   live?: string;
   repo?: string;
-  accent: string;
+  image: string;
   year: string;
-  scale: string;
 };
 
 const projects: Project[] = [
@@ -26,20 +26,18 @@ const projects: Project[] = [
     tags: ["Next.js", "Payload", "Stripe", "tRPC"],
     live: "https://multitenant-ecommerce-nbhs.vercel.app",
     repo: "https://github.com/praharj123barman-glitch/multitenant-ecommerce",
-    accent: "from-lime-400/40 via-emerald-500/30 to-teal-600/20",
+    image: "/projects/multimart.png",
     year: "2026",
-    scale: "01",
   },
   {
     name: "Taskflow",
     tagline: "Trello-style kanban for teams",
     description:
-      "Drag-and-drop boards, lists, and cards with optimistic updates. Built on Next.js 16 with Postgres + dnd-kit choreography.",
+      "Drag-and-drop boards, lists, and cards with optimistic updates. Built on Next.js 16 with Postgres and dnd-kit choreography.",
     tags: ["Next.js 16", "Postgres", "dnd-kit", "Prisma"],
     live: "https://trello-clone-five-kohl.vercel.app",
-    accent: "from-blue-400/40 via-indigo-500/30 to-violet-600/20",
+    image: "/projects/taskflow.png",
     year: "2025",
-    scale: "02",
   },
   {
     name: "Pulse",
@@ -48,20 +46,18 @@ const projects: Project[] = [
       "Revenue, active users, conversion, and churn rendered live. Charts, traffic-source breakdowns, exportable reports. Data-heavy and snappy.",
     tags: ["React", "Recharts", "Tailwind"],
     live: "https://venerable-tanuki-546a9f.netlify.app",
-    accent: "from-violet-400/40 via-purple-500/30 to-fuchsia-600/20",
+    image: "/projects/pulse.png",
     year: "2025",
-    scale: "03",
   },
   {
     name: "NOVEN",
     tagline: "Creative agency landing",
     description:
-      "Bold editorial typography for a brand-strategy and web-design studio. Orange-on-black, statement headline, motion-rich scroll.",
+      "Bold editorial typography for a brand-strategy and web-design studio. Orange on black, statement headline, motion-rich scroll.",
     tags: ["Next.js", "Tailwind", "Framer Motion"],
     live: "https://noven-agency.vercel.app",
-    accent: "from-orange-400/40 via-red-500/30 to-rose-600/20",
+    image: "/projects/noven.png",
     year: "2025",
-    scale: "04",
   },
   {
     name: "Meridian",
@@ -70,20 +66,18 @@ const projects: Project[] = [
       "Marketing site for an AI-powered analytics platform: data that thinks before you do. Clean editorial layout, fast load, conversion-focused CTAs.",
     tags: ["Next.js", "Tailwind", "TypeScript"],
     live: "https://meridian-landing-sigma.vercel.app",
-    accent: "from-cyan-400/40 via-sky-500/30 to-blue-600/20",
+    image: "/projects/meridian.png",
     year: "2025",
-    scale: "05",
   },
   {
     name: "Aurm",
     tagline: "Sneaker e-commerce storefront",
     description:
-      "Premium product detail page with gallery, color variants, size matrix, and a sticky buy panel. Built for a footwear brand on Supabase with row-level security.",
+      "Premium product detail page with gallery, color variants, size matrix, and a sticky buy panel. Built on Supabase with row-level security.",
     tags: ["Next.js", "Supabase", "Tailwind", "RLS"],
     live: "https://aurm-ecommerce.vercel.app",
-    accent: "from-amber-400/40 via-orange-500/30 to-red-600/20",
+    image: "/projects/aurm.png",
     year: "2025",
-    scale: "06",
   },
 ];
 
@@ -119,26 +113,34 @@ export function Projects() {
               transition={{ duration: 0.55, ease, delay: 0.15 + i * 0.06 }}
               className="glass-card group relative flex flex-col overflow-hidden rounded-3xl transition-all hover:border-white/15 hover:shadow-glow"
             >
-              <div
-                className={`relative aspect-[16/10] overflow-hidden bg-gradient-to-br ${p.accent}`}
+              <a
+                href={p.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Visit ${p.name} live site`}
+                className="relative block aspect-[16/10] overflow-hidden bg-black/40"
               >
-                <div className="absolute inset-0 grid-pattern opacity-30" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="display text-[clamp(5rem,18vw,10rem)] leading-none text-white/8 transition-transform duration-700 group-hover:scale-110">
-                    {p.scale}
-                  </span>
-                </div>
+                <Image
+                  src={p.image}
+                  alt={`${p.name} — ${p.tagline}`}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                  priority={i < 3}
+                />
+                {/* Top gradient for badge legibility on bright screenshots */}
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/55 to-transparent" />
                 <div className="absolute left-5 top-5 flex items-center gap-2">
                   <span className="glass-elevated rounded-full px-2.5 py-1 text-[10px] font-medium text-foreground/90">
                     {p.year}
                   </span>
                 </div>
                 <div className="absolute right-5 top-5">
-                  <span className="glass-elevated flex h-9 w-9 items-center justify-center rounded-full text-foreground/90 transition-all group-hover:bg-accent group-hover:text-background">
+                  <span className="glass-elevated flex h-9 w-9 items-center justify-center rounded-full text-foreground transition-all group-hover:bg-accent group-hover:text-background">
                     <ArrowUpRight className="h-4 w-4" />
                   </span>
                 </div>
-              </div>
+              </a>
 
               <div className="flex flex-1 flex-col gap-4 p-6">
                 <div>

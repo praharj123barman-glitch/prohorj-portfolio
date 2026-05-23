@@ -1,32 +1,49 @@
 "use client";
 
 import { motion } from "framer-motion";
+import {
+  SiHtml5,
+  SiCss,
+  SiJavascript,
+  SiTypescript,
+  SiReact,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiNodedotjs,
+  SiPython,
+  SiDjango,
+  SiPrisma,
+  SiPostgresql,
+  SiMongodb,
+  SiGithub,
+  SiGit,
+} from "react-icons/si";
+import type { IconType } from "react-icons";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
 type Tech = {
   name: string;
-  initial: string;
-  tint: string;
+  Icon: IconType;
+  color: string;
 };
 
 const stack: Tech[] = [
-  { name: "TypeScript", initial: "TS", tint: "from-blue-400 to-blue-600" },
-  { name: "React", initial: "Re", tint: "from-cyan-300 to-cyan-500" },
-  { name: "Next.js", initial: "Nx", tint: "from-white to-zinc-400" },
-  { name: "Tailwind", initial: "Tw", tint: "from-cyan-300 to-sky-500" },
-  { name: "Node.js", initial: "Nd", tint: "from-emerald-400 to-green-600" },
-  { name: "Python", initial: "Py", tint: "from-yellow-300 to-blue-500" },
-  { name: "Django", initial: "Dj", tint: "from-emerald-500 to-emerald-700" },
-  { name: "Prisma", initial: "Pr", tint: "from-indigo-300 to-indigo-500" },
-  { name: "Postgres", initial: "Pg", tint: "from-sky-400 to-blue-600" },
-  { name: "MongoDB", initial: "Mo", tint: "from-green-400 to-emerald-600" },
-  { name: "Stripe", initial: "St", tint: "from-violet-400 to-purple-600" },
-  { name: "tRPC", initial: "tR", tint: "from-blue-400 to-cyan-400" },
-  { name: "Framer", initial: "Fm", tint: "from-pink-400 to-rose-500" },
-  { name: "Vercel", initial: "Vc", tint: "from-zinc-100 to-zinc-400" },
-  { name: "Git", initial: "Gt", tint: "from-orange-400 to-red-500" },
-  { name: "GitHub", initial: "Gh", tint: "from-zinc-200 to-zinc-500" },
+  { name: "HTML5", Icon: SiHtml5, color: "#E34F26" },
+  { name: "CSS", Icon: SiCss, color: "#1572B6" },
+  { name: "JavaScript", Icon: SiJavascript, color: "#F7DF1E" },
+  { name: "TypeScript", Icon: SiTypescript, color: "#3178C6" },
+  { name: "React", Icon: SiReact, color: "#61DAFB" },
+  { name: "Next.js", Icon: SiNextdotjs, color: "#FFFFFF" },
+  { name: "Tailwind", Icon: SiTailwindcss, color: "#06B6D4" },
+  { name: "Node.js", Icon: SiNodedotjs, color: "#5FA04E" },
+  { name: "Python", Icon: SiPython, color: "#3776AB" },
+  { name: "Django", Icon: SiDjango, color: "#44B78B" },
+  { name: "Prisma", Icon: SiPrisma, color: "#5A67D8" },
+  { name: "PostgreSQL", Icon: SiPostgresql, color: "#4169E1" },
+  { name: "MongoDB", Icon: SiMongodb, color: "#47A248" },
+  { name: "GitHub", Icon: SiGithub, color: "#FFFFFF" },
+  { name: "Git", Icon: SiGit, color: "#F05032" },
 ];
 
 export function TechStack() {
@@ -39,39 +56,43 @@ export function TechStack() {
           transition={{ duration: 0.6, ease }}
           className="text-center"
         >
-          <p className="label-mono text-accent">Tech stack</p>
-          <h2 className="display mt-3 text-4xl text-foreground sm:text-5xl">
-            Tools I reach for.
+          <h2 className="display text-4xl text-foreground sm:text-5xl md:text-6xl">
+            My Tech <span className="text-accent">Stack</span>
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-            Picked for ergonomics, type safety, and how fast they let me get
-            from idea to deployed.
+          <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-muted-foreground">
+            The tools I use to build scalable, high-performance web
+            applications.
           </p>
         </motion.div>
 
-        <div className="mt-14 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
-          {stack.map((tech, i) => (
-            <motion.div
-              key={tech.name}
-              initial={{ opacity: 0, scale: 0.85 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{
-                duration: 0.45,
-                ease,
-                delay: 0.1 + (i % 8) * 0.04 + Math.floor(i / 8) * 0.08,
-              }}
-              className="glass-card group flex aspect-square flex-col items-center justify-center gap-2 rounded-2xl transition-all hover:border-white/20 hover:shadow-glow"
-            >
-              <div
-                className={`bg-gradient-to-br ${tech.tint} flex h-9 w-9 items-center justify-center rounded-xl text-xs font-bold text-black/85 shadow-sm`}
+        <div className="mx-auto mt-14 grid max-w-4xl grid-cols-3 gap-3 sm:grid-cols-4 sm:gap-4 md:grid-cols-5">
+          {stack.map((tech, i) => {
+            const Icon = tech.Icon;
+            return (
+              <motion.div
+                key={tech.name}
+                initial={{ opacity: 0, scale: 0.85 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{
+                  duration: 0.5,
+                  ease,
+                  delay: 0.15 + (i % 5) * 0.05 + Math.floor(i / 5) * 0.08,
+                }}
+                title={tech.name}
+                className="glass-card group relative flex aspect-square items-center justify-center rounded-2xl transition-all hover:border-white/15 hover:shadow-glow"
               >
-                {tech.initial}
-              </div>
-              <span className="text-[11px] font-medium text-muted-foreground transition-colors group-hover:text-foreground">
-                {tech.name}
-              </span>
-            </motion.div>
-          ))}
+                <Icon
+                  className="h-12 w-12 transition-transform duration-300 group-hover:scale-110 sm:h-14 sm:w-14"
+                  style={{ color: tech.color }}
+                  aria-label={tech.name}
+                />
+                {/* Hover label */}
+                <span className="pointer-events-none absolute -bottom-7 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-black/80 px-2.5 py-1 text-[10px] font-medium text-foreground opacity-0 backdrop-blur transition-opacity duration-200 group-hover:opacity-100">
+                  {tech.name}
+                </span>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
