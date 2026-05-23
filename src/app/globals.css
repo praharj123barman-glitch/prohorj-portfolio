@@ -116,21 +116,8 @@ body {
 
 .hero-orbs {
   position: relative;
-  isolation: isolate;
 }
-.hero-orbs::before {
-  content: "";
-  position: absolute;
-  top: -10%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  height: 600px;
-  background: radial-gradient(ellipse at center, rgba(255, 92, 0, 0.18), transparent 60%);
-  filter: blur(80px);
-  z-index: -1;
-  pointer-events: none;
-}
+/* hero-orbs::before removed — the bg photo now provides hero atmosphere */
 
 /* ============================================
    Surface primitives — opaque cards (Obsidian-style)
