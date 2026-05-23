@@ -71,6 +71,7 @@
 }
 
 html {
+  /* fallback color while fixed bg image loads */
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-manrope), Manrope, ui-sans-serif, system-ui, sans-serif;
@@ -79,7 +80,8 @@ html {
 }
 
 body {
-  background: var(--background);
+  /* transparent so the fixed bg image (z-index -2) shows through */
+  background: transparent;
   color: var(--foreground);
   min-height: 100vh;
   overflow-x: hidden;
