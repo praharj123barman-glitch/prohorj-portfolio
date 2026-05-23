@@ -59,11 +59,14 @@ export default function RootLayout({
             backgroundPosition: "center top",
           }}
         />
-        {/* Dark scrim for legibility — light enough that the photo bleeds through */}
+        {/* Gradient scrim — photo visible at top, fades to dark at bottom */}
         <div
           aria-hidden
           className="fixed inset-0 z-[-1]"
-          style={{ background: "rgba(19, 19, 19, 0.55)" }}
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(19,19,19,0.35) 0%, rgba(19,19,19,0.70) 55%, rgba(19,19,19,0.92) 100%)",
+          }}
         />
         <div className="grain" aria-hidden />
         <Navbar />
