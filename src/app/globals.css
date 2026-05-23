@@ -13,10 +13,10 @@
   --muted-foreground: #8a8aa8;
   --subtle-foreground: #5a5a78;
 
-  /* Brand — cyan-blue */
-  --accent: #22d3ee;
-  --accent-2: #3b82f6;
-  --accent-soft: rgba(34, 211, 238, 0.12);
+  /* Brand — lime-emerald */
+  --accent: #a3e635;
+  --accent-2: #10b981;
+  --accent-soft: rgba(163, 230, 53, 0.12);
 
   /* Glass */
   --glass-base: rgba(255, 255, 255, 0.025);
@@ -26,7 +26,7 @@
   --glass-border-strong: rgba(255, 255, 255, 0.12);
 
   /* Shadows */
-  --shadow-glow: 0 0 60px -10px rgba(34, 211, 238, 0.35);
+  --shadow-glow: 0 0 60px -10px rgba(163, 230, 53, 0.35);
   --shadow-card: 0 30px 60px -30px rgba(0, 0, 0, 0.7);
 
   /* Radii */
@@ -73,9 +73,9 @@ body {
   inset: 0;
   z-index: -2;
   background:
-    radial-gradient(circle at 15% 20%, rgba(34, 211, 238, 0.18), transparent 45%),
-    radial-gradient(circle at 85% 75%, rgba(59, 130, 246, 0.16), transparent 45%),
-    radial-gradient(circle at 50% 100%, rgba(34, 211, 238, 0.08), transparent 60%),
+    radial-gradient(circle at 15% 20%, rgba(163, 230, 53, 0.18), transparent 45%),
+    radial-gradient(circle at 85% 75%, rgba(16, 185, 129, 0.18), transparent 45%),
+    radial-gradient(circle at 50% 100%, rgba(163, 230, 53, 0.08), transparent 60%),
     var(--background);
 }
 
@@ -107,7 +107,7 @@ body {
   transform: translateX(-50%);
   width: 80%;
   height: 600px;
-  background: radial-gradient(ellipse at center, rgba(34, 211, 238, 0.18), transparent 60%);
+  background: radial-gradient(ellipse at center, rgba(163, 230, 53, 0.18), transparent 60%);
   filter: blur(80px);
   z-index: -1;
   pointer-events: none;
@@ -171,11 +171,11 @@ body {
   color: #04040c;
   font-weight: 600;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 8px 24px -8px rgba(34, 211, 238, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+  box-shadow: 0 8px 24px -8px rgba(163, 230, 53, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
 }
 .btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 12px 32px -8px rgba(34, 211, 238, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+  box-shadow: 0 12px 32px -8px rgba(163, 230, 53, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
 }
 
 .btn-ghost {

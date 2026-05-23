@@ -12,9 +12,9 @@ type Project = {
   tags: string[];
   live?: string;
   repo?: string;
-  accent: string; // gradient classes
+  accent: string;
   year: string;
-  scale: string; // "01", "02"...
+  scale: string;
 };
 
 const projects: Project[] = [
@@ -22,73 +22,68 @@ const projects: Project[] = [
     name: "MultiMart",
     tagline: "Multi-tenant e-commerce platform",
     description:
-      "Every seller gets their own subdomain, storefront, Stripe Connect payouts, and dashboard. Built end-to-end with Payload CMS + tRPC + MongoDB.",
+      "Every seller gets a subdomain, storefront, Stripe Connect payouts, and dashboard. Built end-to-end with Payload CMS, tRPC, and MongoDB.",
     tags: ["Next.js", "Payload", "Stripe", "tRPC"],
     live: "https://multitenant-ecommerce-nbhs.vercel.app",
     repo: "https://github.com/praharj123barman-glitch/multitenant-ecommerce",
-    accent: "from-cyan-400/40 via-blue-500/30 to-indigo-600/20",
+    accent: "from-lime-400/40 via-emerald-500/30 to-teal-600/20",
     year: "2026",
     scale: "01",
   },
   {
     name: "Taskflow",
-    tagline: "Trello-style kanban board",
+    tagline: "Trello-style kanban for teams",
     description:
-      "Drag-and-drop boards, lists, and cards with optimistic updates. Built on Next.js 16 + Prisma 7 with @dnd-kit choreography.",
-    tags: ["Next.js 16", "Prisma 7", "dnd-kit", "Postgres"],
-    accent: "from-violet-400/40 via-purple-500/30 to-fuchsia-600/20",
-    year: "2026",
+      "Drag-and-drop boards, lists, and cards with optimistic updates. Built on Next.js 16 with Postgres + dnd-kit choreography.",
+    tags: ["Next.js 16", "Postgres", "dnd-kit", "Prisma"],
+    live: "https://trello-clone-five-kohl.vercel.app",
+    accent: "from-blue-400/40 via-indigo-500/30 to-violet-600/20",
+    year: "2025",
     scale: "02",
   },
   {
-    name: "ShopWave",
-    tagline: "Storefront experience kit",
+    name: "Pulse",
+    tagline: "Real-time analytics dashboard",
     description:
-      "Headless storefront with product galleries, faceted search, and checkout primitives ready to drop into any commerce stack.",
-    tags: ["React", "Tailwind", "TypeScript"],
-    accent: "from-emerald-400/40 via-teal-500/30 to-cyan-600/20",
-    year: "2026",
+      "Revenue, active users, conversion, and churn rendered live. Charts, traffic-source breakdowns, exportable reports. Data-heavy and snappy.",
+    tags: ["React", "Recharts", "Tailwind"],
+    live: "https://venerable-tanuki-546a9f.netlify.app",
+    accent: "from-violet-400/40 via-purple-500/30 to-fuchsia-600/20",
+    year: "2025",
     scale: "03",
   },
   {
-    name: "DevBoard",
-    tagline: "Developer-first project board",
+    name: "NOVEN",
+    tagline: "Creative agency landing",
     description:
-      "GitHub-native kanban. Issues sync both ways, PR previews inline, hotkeys for everything. Built for engineers, not project managers.",
-    tags: ["Next.js", "GitHub API", "shadcn/ui"],
-    accent: "from-orange-400/40 via-amber-500/30 to-yellow-600/20",
-    year: "2026",
+      "Bold editorial typography for a brand-strategy and web-design studio. Orange-on-black, statement headline, motion-rich scroll.",
+    tags: ["Next.js", "Tailwind", "Framer Motion"],
+    live: "https://noven-agency.vercel.app",
+    accent: "from-orange-400/40 via-red-500/30 to-rose-600/20",
+    year: "2025",
     scale: "04",
   },
   {
-    name: "AdminX",
-    tagline: "Admin dashboard system",
+    name: "Meridian",
+    tagline: "AI analytics platform",
     description:
-      "Type-safe admin panels generated from schemas. Tables, forms, and CRUD plumbing without writing the same code twice.",
-    tags: ["React", "Tailwind", "Zod"],
-    accent: "from-rose-400/40 via-pink-500/30 to-purple-600/20",
-    year: "2026",
+      "Marketing site for an AI-powered analytics platform: data that thinks before you do. Clean editorial layout, fast load, conversion-focused CTAs.",
+    tags: ["Next.js", "Tailwind", "TypeScript"],
+    live: "https://meridian-landing-sigma.vercel.app",
+    accent: "from-cyan-400/40 via-sky-500/30 to-blue-600/20",
+    year: "2025",
     scale: "05",
   },
   {
-    name: "Nexus-SaaS",
-    tagline: "SaaS starter template",
+    name: "Aurm",
+    tagline: "Sneaker e-commerce storefront",
     description:
-      "Auth, Stripe subscriptions, team management, and email wired together with sensible defaults, so the first commit is a real feature, not setup.",
-    tags: ["Next.js", "Stripe", "Auth", "Email"],
-    accent: "from-blue-400/40 via-indigo-500/30 to-violet-600/20",
-    year: "2026",
+      "Premium product detail page with gallery, color variants, size matrix, and a sticky buy panel. Built for a footwear brand on Supabase with row-level security.",
+    tags: ["Next.js", "Supabase", "Tailwind", "RLS"],
+    live: "https://aurm-ecommerce.vercel.app",
+    accent: "from-amber-400/40 via-orange-500/30 to-red-600/20",
+    year: "2025",
     scale: "06",
-  },
-  {
-    name: "Truck Financing",
-    tagline: "Lead-gen landing for a finance broker",
-    description:
-      "Built for a real Upwork-style client brief: converting hero, multi-step inquiry form, trust signals, fully responsive. Static, fast, indexable.",
-    tags: ["HTML", "CSS", "JavaScript"],
-    accent: "from-yellow-400/40 via-amber-500/30 to-orange-600/20",
-    year: "2026",
-    scale: "07",
   },
 ];
 
@@ -109,8 +104,9 @@ export function Projects() {
             </h2>
           </div>
           <p className="hidden max-w-sm text-sm text-muted-foreground md:block">
-            Seven products shipped this year. Each one took something I&apos;d
-            never built before and made it production.
+            Six products shipped, all live. Marketplaces, kanban tools,
+            dashboards, agency sites, storefronts. Each one is real, not a
+            demo.
           </p>
         </motion.div>
 
@@ -123,13 +119,12 @@ export function Projects() {
               transition={{ duration: 0.55, ease, delay: 0.15 + i * 0.06 }}
               className="glass-card group relative flex flex-col overflow-hidden rounded-3xl transition-all hover:border-white/15 hover:shadow-glow"
             >
-              {/* Visual canvas */}
               <div
                 className={`relative aspect-[16/10] overflow-hidden bg-gradient-to-br ${p.accent}`}
               >
                 <div className="absolute inset-0 grid-pattern opacity-30" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="display text-[10rem] leading-none text-white/8 transition-transform duration-700 group-hover:scale-110">
+                  <span className="display text-[clamp(5rem,18vw,10rem)] leading-none text-white/8 transition-transform duration-700 group-hover:scale-110">
                     {p.scale}
                   </span>
                 </div>
@@ -145,7 +140,6 @@ export function Projects() {
                 </div>
               </div>
 
-              {/* Meta */}
               <div className="flex flex-1 flex-col gap-4 p-6">
                 <div>
                   <h3 className="text-lg font-semibold text-foreground">
