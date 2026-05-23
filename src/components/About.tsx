@@ -61,14 +61,19 @@ export function About() {
             return (
               <motion.div
                 key={attr.label}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, ease, delay: 0.3 + i * 0.07 }}
-                className="glass-card card-glow rounded-2xl p-8"
+                whileHover={{ y: -6 }}
+                transition={{ duration: 0.6, ease, delay: 0.3 + i * 0.08 }}
+                className="glass-card card-glow group rounded-2xl p-8"
               >
-                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-surface-container-highest">
-                  <Icon className="h-5 w-5 text-accent" />
-                </div>
+                <motion.div
+                  whileHover={{ rotate: [0, -10, 10, -6, 6, 0], scale: 1.08 }}
+                  transition={{ duration: 0.7, ease: "easeInOut" }}
+                  className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-surface-container-highest"
+                >
+                  <Icon className="h-5 w-5 text-accent transition-transform duration-300 group-hover:scale-110" />
+                </motion.div>
                 <h4 className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-on-surface-variant">
                   {attr.label}
                 </h4>

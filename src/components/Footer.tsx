@@ -1,7 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
+
+const ease = [0.16, 1, 0.3, 1] as const;
 
 const socials = [
   {
@@ -40,37 +43,57 @@ const socials = [
 
 export function Footer() {
   return (
-    <footer className="relative z-20 border-t border-white/5 bg-surface px-5 py-8 sm:px-8 lg:px-20">
+    <motion.footer
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease, delay: 0.2 }}
+      className="relative z-20 border-t border-white/5 bg-surface px-5 py-8 sm:px-8 lg:px-20"
+    >
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 md:flex-row">
         <div className="flex items-center gap-2.5">
-          <span className="accent-gradient flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold text-on-primary">
+          <motion.span
+            whileHover={{ scale: 1.15, rotate: 15 }}
+            transition={{ type: "spring", stiffness: 300, damping: 15 }}
+            className="accent-gradient flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold text-on-primary"
+          >
             P
-          </span>
+          </motion.span>
           <p className="text-sm text-on-surface-variant">
             © {new Date().getFullYear()} Prohorj. Built with care.
           </p>
         </div>
 
         <ul className="flex items-center gap-2">
-          {socials.map((s) => (
-            <li key={s.label}>
-              <Link
-                href={s.href}
-                target={s.href.startsWith("mailto:") ? undefined : "_blank"}
-                rel={
-                  s.href.startsWith("mailto:")
-                    ? undefined
-                    : "noopener noreferrer"
-                }
-                aria-label={s.label}
-                className="flex h-11 w-11 items-center justify-center rounded-full bg-surface-container-low text-on-surface-variant transition-colors hover:bg-surface-container-highest hover:text-accent"
+          {socials.map((s, i) => (
+            <motion.li
+              key={s.label}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, ease, delay: 0.35 + i * 0.06 }}
+            >
+              <motion.div
+                whileHover={{ y: -4, scale: 1.08 }}
+                whileTap={{ scale: 0.94 }}
+                transition={{ type: "spring", stiffness: 320, damping: 15 }}
               >
-                {s.icon}
-              </Link>
-            </li>
+                <Link
+                  href={s.href}
+                  target={s.href.startsWith("mailto:") ? undefined : "_blank"}
+                  rel={
+                    s.href.startsWith("mailto:")
+                      ? undefined
+                      : "noopener noreferrer"
+                  }
+                  aria-label={s.label}
+                  className="flex h-11 w-11 items-center justify-center rounded-full bg-surface-container-low text-on-surface-variant transition-colors hover:bg-surface-container-highest hover:text-accent"
+                >
+                  {s.icon}
+                </Link>
+              </motion.div>
+            </motion.li>
           ))}
         </ul>
       </div>
-    </footer>
+    </motion.footer>
   );
 }

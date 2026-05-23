@@ -71,21 +71,28 @@ export function TechStack() {
             return (
               <motion.div
                 key={tech.name}
-                initial={{ opacity: 0, scale: 0.85 }}
-                animate={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, scale: 0.7, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{
-                  duration: 0.5,
-                  ease,
-                  delay: 0.15 + (i % 5) * 0.05 + Math.floor(i / 5) * 0.08,
+                  type: "spring",
+                  stiffness: 220,
+                  damping: 22,
+                  delay: 0.15 + (i % 5) * 0.06 + Math.floor(i / 5) * 0.1,
                 }}
+                whileHover={{ y: -4, scale: 1.04 }}
                 title={tech.name}
-                className="glass-card card-glow group relative flex aspect-square items-center justify-center rounded-2xl"
+                className="glass-card card-glow group relative flex aspect-square cursor-pointer items-center justify-center rounded-2xl"
               >
-                <Icon
-                  className="h-10 w-10 transition-transform duration-300 group-hover:scale-110 sm:h-12 sm:w-12"
-                  style={{ color: tech.color }}
-                  aria-label={tech.name}
-                />
+                <motion.div
+                  whileHover={{ rotate: [0, -8, 8, -4, 4, 0] }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                >
+                  <Icon
+                    className="h-10 w-10 sm:h-12 sm:w-12"
+                    style={{ color: tech.color }}
+                    aria-label={tech.name}
+                  />
+                </motion.div>
                 {/* Hover label */}
                 <span className="pointer-events-none absolute -bottom-7 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-surface-container-highest px-2.5 py-1 text-[10px] font-medium text-foreground opacity-0 transition-opacity duration-200 group-hover:opacity-100">
                   {tech.name}

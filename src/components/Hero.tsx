@@ -8,12 +8,12 @@ const ease = [0.16, 1, 0.3, 1] as const;
 const tagline = "I'm Prohorj, a Full-Stack Developer";
 
 // Split headline into words so each can animate individually
-const headlineParts: Array<{ text: string; accent?: boolean }> = [
+const headlineParts: Array<{ text: string }> = [
   { text: "Crafting" },
   { text: "digital" },
   { text: "products" },
   { text: "with" },
-  { text: "obsessive", accent: true },
+  { text: "obsessive" },
   { text: "attention" },
   { text: "to" },
   { text: "detail." },
@@ -61,24 +61,15 @@ export function Hero() {
           initial="hidden"
           animate="visible"
           variants={containerVariants}
-          className="display mx-auto mb-6 max-w-4xl text-[clamp(2.75rem,8vw,6rem)] leading-[0.95] text-foreground"
+          className="display mx-auto mb-6 max-w-3xl text-[clamp(2.25rem,6vw,4.75rem)] leading-[0.95] text-foreground"
           aria-label="Crafting digital products with obsessive attention to detail."
         >
           {headlineParts.map((word, i) => (
             <motion.span
               key={i}
               variants={wordVariants}
-              className={`mr-[0.25em] inline-block ${
-                word.accent
-                  ? "text-glow text-accent text-[0.78em] align-middle"
-                  : ""
-              }`}
-              style={{
-                textShadow:
-                  word.accent
-                    ? undefined
-                    : "0 2px 24px rgba(0,0,0,0.6)",
-              }}
+              className="mr-[0.25em] inline-block"
+              style={{ textShadow: "0 2px 24px rgba(0,0,0,0.7)" }}
             >
               {word.text}
             </motion.span>
