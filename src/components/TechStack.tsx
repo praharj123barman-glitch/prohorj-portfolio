@@ -48,24 +48,24 @@ const stack: Tech[] = [
 
 export function TechStack() {
   return (
-    <section className="relative py-32">
-      <div className="mx-auto max-w-7xl px-4 lg:px-8">
+    <section className="relative px-5 py-32 sm:px-8 lg:px-20">
+      <div className="mx-auto max-w-7xl text-center">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease }}
-          className="text-center"
         >
           <h2 className="display text-4xl text-foreground sm:text-5xl md:text-6xl">
-            My Tech <span className="text-accent">Stack</span>
+            My Tech{" "}
+            <span className="text-glow text-accent">Stack</span>
           </h2>
-          <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-muted-foreground">
+          <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-on-surface-variant">
             The tools I use to build scalable, high-performance web
             applications.
           </p>
         </motion.div>
 
-        <div className="mx-auto mt-14 grid max-w-4xl grid-cols-3 gap-3 sm:grid-cols-4 sm:gap-4 md:grid-cols-5">
+        <div className="mx-auto mt-12 grid max-w-3xl grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-5">
           {stack.map((tech, i) => {
             const Icon = tech.Icon;
             return (
@@ -79,15 +79,15 @@ export function TechStack() {
                   delay: 0.15 + (i % 5) * 0.05 + Math.floor(i / 5) * 0.08,
                 }}
                 title={tech.name}
-                className="glass-card group relative flex aspect-square items-center justify-center rounded-2xl transition-all hover:border-white/15 hover:shadow-glow"
+                className="glass-card card-glow group relative flex aspect-square items-center justify-center rounded-2xl"
               >
                 <Icon
-                  className="h-12 w-12 transition-transform duration-300 group-hover:scale-110 sm:h-14 sm:w-14"
+                  className="h-10 w-10 transition-transform duration-300 group-hover:scale-110 sm:h-12 sm:w-12"
                   style={{ color: tech.color }}
                   aria-label={tech.name}
                 />
                 {/* Hover label */}
-                <span className="pointer-events-none absolute -bottom-7 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-black/80 px-2.5 py-1 text-[10px] font-medium text-foreground opacity-0 backdrop-blur transition-opacity duration-200 group-hover:opacity-100">
+                <span className="pointer-events-none absolute -bottom-7 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-surface-container-highest px-2.5 py-1 text-[10px] font-medium text-foreground opacity-0 transition-opacity duration-200 group-hover:opacity-100">
                   {tech.name}
                 </span>
               </motion.div>

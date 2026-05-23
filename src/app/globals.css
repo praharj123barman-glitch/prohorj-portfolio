@@ -1,36 +1,49 @@
 @import "tailwindcss";
 
 /* ============================================
-   PROHORJ PORTFOLIO — Glassmorphic Dark + Cyan-Blue
+   PROHORJ PORTFOLIO — Obsidian Glow (Stitch theme)
+   Black + #FF5C00 orange + Bebas Neue + Manrope
    ============================================ */
 
 :root {
-  /* Surfaces */
-  --background: #060611;
-  --surface: #0b0b1a;
-  --surface-elevated: #11112a;
-  --foreground: #f5f5ff;
-  --muted-foreground: #8a8aa8;
-  --subtle-foreground: #5a5a78;
+  /* Surfaces — Obsidian Glow */
+  --background: #131313;
+  --surface: #131313;
+  --surface-container-lowest: #0e0e0e;
+  --surface-container-low: #1c1b1b;
+  --surface-container: #201f1f;
+  --surface-container-high: #2a2a2a;
+  --surface-container-highest: #353534;
+  --surface-bright: #3a3939;
 
-  /* Brand — lime-emerald */
-  --accent: #a3e635;
-  --accent-2: #10b981;
-  --accent-soft: rgba(163, 230, 53, 0.12);
+  /* Text */
+  --foreground: #e5e2e1;
+  --on-surface: #e5e2e1;
+  --on-surface-variant: #e4beb1;
+  --muted-foreground: #a3a3a3;
+  --subtle-foreground: #6b6b6b;
+
+  /* Brand — vibrant orange */
+  --accent: #ff5c00;
+  --accent-2: #ffb59a;
+  --accent-soft: rgba(255, 92, 0, 0.12);
+  --on-primary: #5a1b00;
+  --primary-fixed: #ffdbce;
 
   /* Glass */
   --glass-base: rgba(255, 255, 255, 0.025);
   --glass-elevated: rgba(255, 255, 255, 0.045);
   --glass-overlay: rgba(255, 255, 255, 0.07);
-  --glass-border: rgba(255, 255, 255, 0.07);
-  --glass-border-strong: rgba(255, 255, 255, 0.12);
+  --glass-border: rgba(255, 255, 255, 0.05);
+  --glass-border-strong: rgba(255, 255, 255, 0.10);
 
   /* Shadows */
-  --shadow-glow: 0 0 60px -10px rgba(163, 230, 53, 0.35);
+  --shadow-glow: 0 0 40px rgba(255, 92, 0, 0.30);
+  --shadow-glow-strong: 0 0 60px rgba(255, 92, 0, 0.45);
   --shadow-card: 0 30px 60px -30px rgba(0, 0, 0, 0.7);
 
   /* Radii */
-  --radius-sm: 0.625rem;
+  --radius-sm: 0.5rem;
   --radius: 1rem;
   --radius-lg: 1.5rem;
   --radius-xl: 2rem;
@@ -40,20 +53,27 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-surface: var(--surface);
-  --color-surface-elevated: var(--surface-elevated);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-highest: var(--surface-container-highest);
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
   --color-muted-foreground: var(--muted-foreground);
   --color-subtle-foreground: var(--subtle-foreground);
   --color-accent: var(--accent);
   --color-accent-2: var(--accent-2);
   --color-accent-soft: var(--accent-soft);
-  --font-sans: var(--font-geist-sans);
+  --color-on-primary: var(--on-primary);
+  --color-primary-fixed: var(--primary-fixed);
+  --font-sans: var(--font-manrope);
+  --font-headline: var(--font-bebas-neue);
   --font-mono: var(--font-geist-mono);
 }
 
 html {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), Inter, ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-manrope), Manrope, ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -66,16 +86,15 @@ body {
 }
 
 /* ============================================
-   Ambient background — mesh + grain (fixed)
+   Ambient background — orange void
    ============================================ */
 .mesh-bg {
   position: fixed;
   inset: 0;
   z-index: -2;
   background:
-    radial-gradient(circle at 15% 20%, rgba(163, 230, 53, 0.18), transparent 45%),
-    radial-gradient(circle at 85% 75%, rgba(16, 185, 129, 0.18), transparent 45%),
-    radial-gradient(circle at 50% 100%, rgba(163, 230, 53, 0.08), transparent 60%),
+    radial-gradient(circle at 20% 15%, rgba(255, 92, 0, 0.10), transparent 50%),
+    radial-gradient(circle at 80% 85%, rgba(255, 92, 0, 0.08), transparent 50%),
     var(--background);
 }
 
@@ -84,14 +103,14 @@ body {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.04;
+  opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .grid-pattern {
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
@@ -107,107 +126,127 @@ body {
   transform: translateX(-50%);
   width: 80%;
   height: 600px;
-  background: radial-gradient(ellipse at center, rgba(163, 230, 53, 0.18), transparent 60%);
+  background: radial-gradient(ellipse at center, rgba(255, 92, 0, 0.18), transparent 60%);
   filter: blur(80px);
   z-index: -1;
   pointer-events: none;
 }
 
 /* ============================================
-   Glass primitives — 3 tiers
+   Surface primitives — opaque cards (Obsidian-style)
    ============================================ */
 .glass-base {
-  background: var(--glass-base);
+  background: var(--surface-container-low);
   border: 1px solid var(--glass-border);
-  backdrop-filter: blur(20px) saturate(140%);
-  -webkit-backdrop-filter: blur(20px) saturate(140%);
 }
 
 .glass-card {
-  background: var(--glass-elevated);
+  background: var(--surface-container-low);
   border: 1px solid var(--glass-border);
-  backdrop-filter: blur(24px) saturate(150%);
-  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.glass-card:hover {
+  background: var(--surface-container);
 }
 
 .glass-elevated {
-  background: var(--glass-overlay);
+  background: var(--surface-container-highest);
   border: 1px solid var(--glass-border-strong);
-  backdrop-filter: blur(28px) saturate(160%);
-  -webkit-backdrop-filter: blur(28px) saturate(160%);
 }
 
 .glass-nav {
-  background: rgba(6, 6, 17, 0.55);
+  background: rgba(19, 19, 19, 0.10);
   border-bottom: 1px solid var(--glass-border);
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+}
+
+.glass-pill {
+  background: rgba(53, 53, 52, 0.50);
+  border: 1px solid var(--glass-border-strong);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 /* ============================================
-   Typography — display + label-mono
+   Typography — Bebas Neue display + Manrope body
    ============================================ */
 .display {
-  font-family: var(--font-sans), Inter, sans-serif;
-  font-weight: 600;
-  letter-spacing: -0.04em;
+  font-family: var(--font-bebas-neue), "Bebas Neue", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0;
   line-height: 0.95;
 }
 
 .label-mono {
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 0.6875rem;
-  font-weight: 500;
+  font-family: var(--font-manrope), Manrope, ui-sans-serif, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: var(--muted-foreground);
+  color: var(--on-surface-variant);
 }
 
 /* ============================================
-   Buttons
+   Buttons (Obsidian: solid orange with glow)
    ============================================ */
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  color: #04040c;
-  font-weight: 600;
+  background: var(--accent);
+  color: var(--on-primary);
+  font-weight: 700;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 8px 24px -8px rgba(163, 230, 53, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+  box-shadow: 0 0 30px rgba(255, 92, 0, 0.30);
 }
 .btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 12px 32px -8px rgba(163, 230, 53, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+  background: var(--primary-fixed);
+  box-shadow: 0 0 40px rgba(255, 92, 0, 0.45);
 }
 
 .btn-ghost {
-  background: var(--glass-base);
-  border: 1px solid var(--glass-border);
+  background: transparent;
+  border: 1px solid var(--glass-border-strong);
   color: var(--foreground);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .btn-ghost:hover {
-  background: var(--glass-elevated);
-  border-color: var(--glass-border-strong);
+  background: var(--surface-container-highest);
+}
+
+/* Hire-me button: orange ghost with accent border */
+.btn-accent-ghost {
+  background: rgba(255, 92, 0, 0.15);
+  border: 1px solid rgba(255, 92, 0, 0.45);
+  color: var(--accent);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-accent-ghost:hover {
+  background: rgba(255, 92, 0, 0.25);
 }
 
 /* ============================================
-   Accent gradients (text + bg)
+   Glow utilities
    ============================================ */
-.accent-gradient {
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+.text-glow {
+  text-shadow: 0 0 40px rgba(255, 92, 0, 0.55);
 }
-.accent-text {
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+
+.card-glow {
+  transition: box-shadow 0.4s ease;
+}
+.card-glow:hover {
+  box-shadow: 0 0 40px rgba(255, 92, 0, 0.10);
 }
 
 .shadow-glow {
   box-shadow: var(--shadow-glow);
 }
 
+.accent-gradient {
+  background: var(--accent);
+}
+
 /* ============================================
-   Marquee (repeating tagline)
+   Marquee
    ============================================ */
 @keyframes marquee {
   from { transform: translateX(0); }
@@ -244,7 +283,7 @@ body {
 }
 
 /* ============================================
-   Reduced motion respect
+   Reduced motion
    ============================================ */
 @media (prefers-reduced-motion: reduce) {
   .marquee-track,
@@ -254,7 +293,6 @@ body {
   }
 }
 
-/* Focus rings */
 *:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;

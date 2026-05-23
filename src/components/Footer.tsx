@@ -40,34 +40,36 @@ const socials = [
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-white/5 py-12">
-      <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
-          <div className="flex items-center gap-2.5">
-            <span className="accent-gradient flex h-7 w-7 items-center justify-center rounded-lg text-sm font-bold text-background shadow-glow">
-              P
-            </span>
-            <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Prohorj. Built with care.
-            </p>
-          </div>
-
-          <ul className="flex items-center gap-2">
-            {socials.map((s) => (
-              <li key={s.label}>
-                <Link
-                  href={s.href}
-                  target={s.href.startsWith("mailto:") ? undefined : "_blank"}
-                  rel={s.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-                  aria-label={s.label}
-                  className="glass-base flex h-11 w-11 items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-accent"
-                >
-                  {s.icon}
-                </Link>
-              </li>
-            ))}
-          </ul>
+    <footer className="relative z-20 border-t border-white/5 bg-surface px-5 py-8 sm:px-8 lg:px-20">
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 md:flex-row">
+        <div className="flex items-center gap-2.5">
+          <span className="accent-gradient flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold text-on-primary">
+            P
+          </span>
+          <p className="text-sm text-on-surface-variant">
+            © {new Date().getFullYear()} Prohorj. Built with care.
+          </p>
         </div>
+
+        <ul className="flex items-center gap-2">
+          {socials.map((s) => (
+            <li key={s.label}>
+              <Link
+                href={s.href}
+                target={s.href.startsWith("mailto:") ? undefined : "_blank"}
+                rel={
+                  s.href.startsWith("mailto:")
+                    ? undefined
+                    : "noopener noreferrer"
+                }
+                aria-label={s.label}
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-surface-container-low text-on-surface-variant transition-colors hover:bg-surface-container-highest hover:text-accent"
+              >
+                {s.icon}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
     </footer>
   );

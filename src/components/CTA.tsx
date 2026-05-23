@@ -1,11 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, ArrowUpRight } from "lucide-react";
+import { Mail } from "lucide-react";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
 const repeatTags = [
+  "tRPC",
+  "Framer",
+  "Vercel",
+  "Prisma",
   "TypeScript",
   "React",
   "Next.js",
@@ -14,72 +18,79 @@ const repeatTags = [
   "Postgres",
   "MongoDB",
   "Stripe",
-  "tRPC",
-  "Framer",
-  "Vercel",
-  "Prisma",
 ];
 
 export function CTA() {
   return (
-    <section className="hero-orbs relative py-32">
-      <div className="mx-auto max-w-5xl px-4 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease }}
-          className="glass-card relative overflow-hidden rounded-[2rem] p-10 text-center sm:p-16"
-        >
-          {/* Decorative orbs */}
-          <div className="pointer-events-none absolute -top-24 left-1/2 h-48 w-[80%] -translate-x-1/2 rounded-full bg-accent/30 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-24 right-0 h-40 w-40 rounded-full bg-accent-2/30 blur-3xl" />
+    <>
+      <section className="relative px-5 py-32 sm:px-8 lg:px-20">
+        <div className="mx-auto max-w-7xl">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease }}
+            className="glass-card relative overflow-hidden rounded-[2rem] p-12 text-center md:p-20"
+          >
+            {/* Radial orange glow center */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute left-1/2 top-1/2 h-[150%] w-[150%] -translate-x-1/2 -translate-y-1/2"
+              style={{
+                background:
+                  "radial-gradient(ellipse at center, rgba(255, 92, 0, 0.18), transparent 60%)",
+              }}
+            />
 
-          <p className="label-mono text-accent">Let&apos;s build</p>
-          <h2 className="display mx-auto mt-4 max-w-3xl text-4xl text-foreground sm:text-5xl md:text-6xl">
-            Let&apos;s build something{" "}
-            <span className="font-bold text-accent">amazing</span> together.
-          </h2>
-          <p className="mx-auto mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
-            Got a product idea, a redesign, or a marketplace you want shipped?
-            I reply within a day.
-          </p>
+            <div className="relative z-10">
+              <h3 className="mb-6 text-xs font-bold uppercase tracking-[0.18em] text-on-surface-variant">
+                Let&apos;s build
+              </h3>
+              <h2 className="display mx-auto mb-6 max-w-3xl text-4xl text-foreground sm:text-5xl md:text-6xl">
+                Let&apos;s build something{" "}
+                <span className="text-glow text-accent">amazing</span> together.
+              </h2>
+              <p className="mx-auto mb-10 max-w-md text-base leading-relaxed text-on-surface-variant">
+                Got a product idea, a redesign, or a marketplace you want
+                shipped? I reply within a day.
+              </p>
 
-          <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a
-              href="mailto:praharj123barman@gmail.com"
-              className="btn-primary flex items-center gap-2 rounded-full px-6 py-3.5 text-sm"
-            >
-              <Mail className="h-4 w-4" />
-              Email me
-              <ArrowUpRight className="h-3.5 w-3.5" />
-            </a>
-            <a
-              href="https://github.com/praharj123barman-glitch"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-ghost flex items-center gap-2 rounded-full px-6 py-3.5 text-sm"
-            >
-              See code on GitHub
-            </a>
-          </div>
-        </motion.div>
-
-        {/* Repeating tech-tag strip */}
-        <div className="mt-14 overflow-hidden border-y border-white/5 py-5">
-          <div className="marquee-track gap-6">
-            {Array.from({ length: 4 }).map((_, dup) =>
-              repeatTags.map((t, i) => (
-                <span
-                  key={`${dup}-${i}`}
-                  className="label-mono shrink-0 !text-xs !tracking-[0.25em] text-muted-foreground/60"
+              <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+                <a
+                  href="mailto:praharj123barman@gmail.com"
+                  className="btn-primary flex items-center gap-2 rounded-full px-8 py-3.5 text-sm"
                 >
-                  <span className="text-accent/60">✦</span> {t}
-                </span>
-              )),
-            )}
-          </div>
+                  <Mail className="h-4 w-4" />
+                  Email me
+                </a>
+                <a
+                  href="https://github.com/praharj123barman-glitch"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-ghost flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-medium"
+                >
+                  See code on GitHub
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Bottom tech-tag marquee */}
+      <div className="mb-8 flex w-full overflow-hidden whitespace-nowrap py-6">
+        <div className="marquee-track items-center gap-8 opacity-50">
+          {Array.from({ length: 4 }).map((_, dup) =>
+            repeatTags.map((t, i) => (
+              <span
+                key={`${dup}-${i}`}
+                className="shrink-0 text-xs font-bold uppercase tracking-[0.18em] text-on-surface-variant"
+              >
+                {t} <span className="text-accent">•</span>
+              </span>
+            )),
+          )}
         </div>
       </div>
-    </section>
+    </>
   );
 }

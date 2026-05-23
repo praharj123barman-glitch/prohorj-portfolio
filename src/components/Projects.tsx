@@ -46,26 +46,25 @@ const projects: Project[] = [
 
 export function Projects() {
   return (
-    <section id="projects" className="relative py-32">
-      <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        {/* Header: left title + right uppercase subtitle */}
+    <section id="projects" className="relative px-5 py-32 sm:px-8 lg:px-20">
+      <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease }}
-          className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end"
+          className="mb-12 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end"
         >
           <h2 className="display text-4xl text-foreground sm:text-5xl md:text-6xl">
-            Featured <span className="text-accent">Projects</span>
+            Featured{" "}
+            <span className="text-glow text-accent">Projects</span>
           </h2>
-          <p className="label-mono max-w-xs text-right text-muted-foreground sm:max-w-sm">
+          <p className="max-w-xs text-right text-xs font-bold uppercase tracking-[0.18em] text-on-surface-variant">
             A selection of my most passionately created projects with
             forward-thinking clients.
           </p>
         </motion.div>
 
-        {/* 2-column grid */}
-        <div className="mt-16 grid grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {projects.map((p, i) => (
             <motion.a
               key={p.name}
@@ -78,22 +77,19 @@ export function Projects() {
               transition={{ duration: 0.55, ease, delay: 0.15 + i * 0.07 }}
               className="group block"
             >
-              {/* Dark rounded frame around screenshot */}
-              <div className="glass-card relative overflow-hidden rounded-3xl p-3 transition-all hover:border-white/15 hover:shadow-glow">
-                <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-black/40">
-                  <Image
-                    src={p.image}
-                    alt={p.name}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                    priority={i < 2}
-                  />
-                </div>
+              <div className="glass-card relative mb-4 aspect-[16/10] overflow-hidden rounded-2xl">
+                <Image
+                  src={p.image}
+                  alt={p.name}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                  priority={i < 2}
+                />
+                {/* bottom-up scrim for legibility */}
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-surface-container-low to-transparent opacity-50" />
               </div>
-
-              {/* Project name below, left-aligned */}
-              <h3 className="mt-5 text-sm font-medium text-foreground transition-colors group-hover:text-accent sm:text-base">
+              <h3 className="text-lg font-bold text-foreground transition-colors group-hover:text-accent">
                 {p.name}
               </h3>
             </motion.a>
