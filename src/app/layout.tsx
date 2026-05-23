@@ -59,11 +59,11 @@ export default function RootLayout({
             backgroundPosition: "center top",
           }}
         />
-        {/* Dark scrim for legibility (90% surface) */}
+        {/* Dark scrim for legibility — light enough that the photo bleeds through */}
         <div
           aria-hidden
           className="fixed inset-0 z-[-1]"
-          style={{ background: "rgba(19, 19, 19, 0.90)" }}
+          style={{ background: "rgba(19, 19, 19, 0.55)" }}
         />
         <div className="grain" aria-hidden />
         <Navbar />
