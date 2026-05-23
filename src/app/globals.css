@@ -1,26 +1,267 @@
 @import "tailwindcss";
 
+/* ============================================
+   PROHORJ PORTFOLIO — Glassmorphic Dark + Cyan-Blue
+   ============================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Surfaces */
+  --background: #060611;
+  --surface: #0b0b1a;
+  --surface-elevated: #11112a;
+  --foreground: #f5f5ff;
+  --muted-foreground: #8a8aa8;
+  --subtle-foreground: #5a5a78;
+
+  /* Brand — cyan-blue */
+  --accent: #22d3ee;
+  --accent-2: #3b82f6;
+  --accent-soft: rgba(34, 211, 238, 0.12);
+
+  /* Glass */
+  --glass-base: rgba(255, 255, 255, 0.025);
+  --glass-elevated: rgba(255, 255, 255, 0.045);
+  --glass-overlay: rgba(255, 255, 255, 0.07);
+  --glass-border: rgba(255, 255, 255, 0.07);
+  --glass-border-strong: rgba(255, 255, 255, 0.12);
+
+  /* Shadows */
+  --shadow-glow: 0 0 60px -10px rgba(34, 211, 238, 0.35);
+  --shadow-card: 0 30px 60px -30px rgba(0, 0, 0, 0.7);
+
+  /* Radii */
+  --radius-sm: 0.625rem;
+  --radius: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-subtle-foreground: var(--subtle-foreground);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-soft: var(--accent-soft);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Inter, ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   Ambient background — mesh + grain (fixed)
+   ============================================ */
+.mesh-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(34, 211, 238, 0.18), transparent 45%),
+    radial-gradient(circle at 85% 75%, rgba(59, 130, 246, 0.16), transparent 45%),
+    radial-gradient(circle at 50% 100%, rgba(34, 211, 238, 0.08), transparent 60%),
+    var(--background);
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.grid-pattern {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.hero-orbs {
+  position: relative;
+  isolation: isolate;
+}
+.hero-orbs::before {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 600px;
+  background: radial-gradient(ellipse at center, rgba(34, 211, 238, 0.18), transparent 60%);
+  filter: blur(80px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ============================================
+   Glass primitives — 3 tiers
+   ============================================ */
+.glass-base {
+  background: var(--glass-base);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+}
+
+.glass-card {
+  background: var(--glass-elevated);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+}
+
+.glass-elevated {
+  background: var(--glass-overlay);
+  border: 1px solid var(--glass-border-strong);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+}
+
+.glass-nav {
+  background: rgba(6, 6, 17, 0.55);
+  border-bottom: 1px solid var(--glass-border);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+}
+
+/* ============================================
+   Typography — display + label-mono
+   ============================================ */
+.display {
+  font-family: var(--font-sans), Inter, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+
+.label-mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--muted-foreground);
+}
+
+/* ============================================
+   Buttons
+   ============================================ */
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #04040c;
+  font-weight: 600;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 24px -8px rgba(34, 211, 238, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+}
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 32px -8px rgba(34, 211, 238, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+}
+
+.btn-ghost {
+  background: var(--glass-base);
+  border: 1px solid var(--glass-border);
+  color: var(--foreground);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-ghost:hover {
+  background: var(--glass-elevated);
+  border-color: var(--glass-border-strong);
+}
+
+/* ============================================
+   Accent gradients (text + bg)
+   ============================================ */
+.accent-gradient {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+}
+.accent-text {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.shadow-glow {
+  box-shadow: var(--shadow-glow);
+}
+
+/* ============================================
+   Marquee (repeating tagline)
+   ============================================ */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-rev {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+.marquee-track-rev {
+  display: flex;
+  width: max-content;
+  animation: marquee-rev 42s linear infinite;
+}
+
+/* ============================================
+   Pulse dot for "available"
+   ============================================ */
+@keyframes soft-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.4); }
+}
+.pulse-dot {
+  animation: soft-pulse 2.4s ease-in-out infinite;
+}
+
+/* ============================================
+   Reduced motion respect
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .marquee-track-rev,
+  .pulse-dot {
+    animation: none;
+  }
+}
+
+/* Focus rings */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--foreground);
 }
