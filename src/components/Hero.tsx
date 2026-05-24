@@ -43,10 +43,18 @@ export function Hero() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-right-top opacity-60 saturate-50"
-          style={{ mixBlendMode: "luminosity" }}
+          className="object-cover opacity-75 saturate-75"
+          style={{ objectPosition: "85% 22%" }}
         />
-        <div className="hero-bg-overlay absolute inset-0" />
+        {/* Diagonal scrim — strong dark on left for text legibility, near-clear on right so face is fully visible */}
+        <div
+          aria-hidden
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(105deg, rgba(11,11,12,0.96) 0%, rgba(11,11,12,0.88) 30%, rgba(11,11,12,0.45) 60%, rgba(11,11,12,0.0) 100%)",
+          }}
+        />
         {/* Grain */}
         <div
           aria-hidden
@@ -61,7 +69,7 @@ export function Hero() {
       </motion.div>
 
       <div className="relative z-10 mx-auto grid w-full max-w-[1240px] grid-cols-1 items-center gap-8 px-6 md:grid-cols-12 md:px-16">
-        <div className="flex flex-col items-start gap-6 md:col-span-7">
+        <div className="flex flex-col items-start gap-6 md:col-span-6 lg:col-span-5">
           {/* Headline — EB Garamond serif */}
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
