@@ -1,44 +1,46 @@
 import type { Metadata, Viewport } from "next";
-import { Bebas_Neue, Manrope, Geist_Mono } from "next/font/google";
+import { EB_Garamond, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { CustomCursor } from "@/components/CustomCursor";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const ebGaramond = EB_Garamond({
+  variable: "--font-eb-garamond",
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
-const bebasNeue = Bebas_Neue({
-  variable: "--font-bebas-neue",
+const geist = Geist({
+  variable: "--font-geist",
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Prohorj · Full-Stack Developer",
+  title: "Prohorj · The Digital Jeweler",
   description:
-    "Prohorj builds polished web products end-to-end. Multi-tenant e-commerce, real-time tools, and finely crafted interfaces.",
+    "Full-stack developer building marketplaces, SaaS, and tools that feel alive. Crafting digital products with obsessive attention to detail.",
   metadataBase: new URL("https://prohorj-portfolio.vercel.app"),
   openGraph: {
-    title: "Prohorj · Full-Stack Developer",
+    title: "Prohorj · The Digital Jeweler",
     description:
-      "Polished web products, end-to-end. Multi-tenant e-commerce, real-time tools, and finely crafted interfaces.",
+      "Full-stack developer building marketplaces, SaaS, and tools that feel alive.",
     type: "website",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#131313",
+  themeColor: "#0B0B0C",
 };
 
 export default function RootLayout({
@@ -47,30 +49,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${manrope.variable} ${bebasNeue.variable} ${geistMono.variable} dark`}
+      className={`${ebGaramond.variable} ${geist.variable} ${geistMono.variable} dark`}
     >
       <body className="min-h-screen flex flex-col">
-        {/* Fixed atmospheric background photo with slow Ken Burns zoom */}
-        <div
-          aria-hidden
-          className="ken-burns fixed inset-0 z-[-2] bg-cover bg-no-repeat"
-          style={{
-            backgroundImage: "url('/hero-bg.jpg')",
-            backgroundPosition: "center top",
-          }}
-        />
-        {/* Gradient scrim — photo visible at top, fades to dark at bottom */}
-        <div
-          aria-hidden
-          className="fixed inset-0 z-[-1]"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(19,19,19,0.35) 0%, rgba(19,19,19,0.70) 55%, rgba(19,19,19,0.92) 100%)",
-          }}
-        />
-        {/* Cinematic vignette — letterbox feel */}
-        <div className="cinematic-vignette" aria-hidden />
-        <div className="grain" aria-hidden />
+        <CustomCursor />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

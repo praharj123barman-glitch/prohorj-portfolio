@@ -1,17 +1,25 @@
 import { Hero } from "@/components/Hero";
-import { About } from "@/components/About";
+import { Stats } from "@/components/Stats";
+import { Work } from "@/components/Work";
+import { Services } from "@/components/Services";
 import { TechStack } from "@/components/TechStack";
-import { Projects } from "@/components/Projects";
-import { CTA } from "@/components/CTA";
+import { Process } from "@/components/Process";
+import { Testimonials } from "@/components/Testimonials";
+import { FAQ } from "@/components/FAQ";
+import { Contact } from "@/components/Contact";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <About />
+      <Stats />
+      <Work />
+      <Services />
       <TechStack />
-      <Projects />
-      <CTA />
+      <Process />
+      <Testimonials />
+      <FAQ />
+      <Contact />
     </>
   );
 }

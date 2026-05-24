@@ -1,52 +1,56 @@
 @import "tailwindcss";
 
 /* ============================================
-   PROHORJ PORTFOLIO — Obsidian Glow (Stitch theme)
-   Black + #FF5C00 orange + Bebas Neue + Manrope
+   PROHORJ DIGITAL ATELIER — The Digital Jeweler
+   Quiet luxury. Glassmorphism. EB Garamond + Geist.
    ============================================ */
 
 :root {
-  /* Surfaces — Obsidian Glow */
-  --background: #131313;
-  --surface: #131313;
-  --surface-container-lowest: #0e0e0e;
+  /* Surfaces */
+  --background: #0B0B0C;
+  --surface: #141312;
+  --surface-container-lowest: #0f0e0d;
   --surface-container-low: #1c1b1b;
   --surface-container: #201f1f;
-  --surface-container-high: #2a2a2a;
-  --surface-container-highest: #353534;
-  --surface-bright: #3a3939;
+  --surface-container-high: #2b2a29;
+  --surface-container-highest: #363434;
+  --surface-bright: #3a3938;
 
   /* Text */
-  --foreground: #e5e2e1;
-  --on-surface: #e5e2e1;
-  --on-surface-variant: #e4beb1;
-  --muted-foreground: #a3a3a3;
-  --subtle-foreground: #6b6b6b;
+  --foreground: #e6e2e0;
+  --on-surface: #e6e2e0;
+  --on-surface-variant: #ccc6bc;
+  --primary-text: #F4EDE2;
+  --muted-foreground: #ccc6bc;
+  --subtle-foreground: #959087;
 
-  /* Brand — vibrant orange */
-  --accent: #ff5c00;
-  --accent-2: #ffb59a;
-  --accent-soft: rgba(255, 92, 0, 0.12);
-  --on-primary: #5a1b00;
-  --primary-fixed: #ffdbce;
+  /* Brand — Muted Gold (secondary), Off-white primary */
+  --primary: #ffffff;
+  --on-primary: #333029;
+  --secondary: #e5c281;   /* muted gold */
+  --secondary-fixed: #ffdea4;
+  --on-secondary: #412d00;
+  --on-primary-fixed: #1e1b15;
+
+  /* Status — Electric Lime (only for availability) */
+  --tertiary: #bcf465;
+  --tertiary-fixed: #bcf465;
+  --tertiary-fixed-dim: #a1d74b;
 
   /* Glass */
-  --glass-base: rgba(255, 255, 255, 0.025);
-  --glass-elevated: rgba(255, 255, 255, 0.045);
-  --glass-overlay: rgba(255, 255, 255, 0.07);
-  --glass-border: rgba(255, 255, 255, 0.05);
-  --glass-border-strong: rgba(255, 255, 255, 0.10);
-
-  /* Shadows */
-  --shadow-glow: 0 0 40px rgba(255, 92, 0, 0.30);
-  --shadow-glow-strong: 0 0 60px rgba(255, 92, 0, 0.45);
-  --shadow-card: 0 30px 60px -30px rgba(0, 0, 0, 0.7);
+  --glass-fill: rgba(20, 19, 18, 0.40);
+  --glass-border: rgba(229, 194, 129, 0.10);
+  --glass-border-hover: rgba(229, 194, 129, 0.50);
+  --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --glass-inset-hover: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  --gold-glow: 0 0 30px rgba(229, 194, 129, 0.05);
+  --gold-glow-strong: 0 0 30px rgba(229, 194, 129, 0.15);
 
   /* Radii */
-  --radius-sm: 0.5rem;
-  --radius: 1rem;
-  --radius-lg: 1.5rem;
-  --radius-xl: 2rem;
+  --radius-sm: 0.25rem;
+  --radius: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
 }
 
 @theme inline {
@@ -55,211 +59,193 @@
   --color-surface: var(--surface);
   --color-surface-container-low: var(--surface-container-low);
   --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
   --color-surface-container-highest: var(--surface-container-highest);
   --color-on-surface: var(--on-surface);
   --color-on-surface-variant: var(--on-surface-variant);
   --color-muted-foreground: var(--muted-foreground);
   --color-subtle-foreground: var(--subtle-foreground);
-  --color-accent: var(--accent);
-  --color-accent-2: var(--accent-2);
-  --color-accent-soft: var(--accent-soft);
-  --color-on-primary: var(--on-primary);
-  --color-primary-fixed: var(--primary-fixed);
-  --font-sans: var(--font-manrope);
-  --font-headline: var(--font-bebas-neue);
+  --color-primary-text: var(--primary-text);
+  --color-secondary: var(--secondary);
+  --color-secondary-fixed: var(--secondary-fixed);
+  --color-on-primary-fixed: var(--on-primary-fixed);
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-fixed: var(--tertiary-fixed);
+  --color-tertiary-fixed-dim: var(--tertiary-fixed-dim);
+  --color-outline-variant: #4a463f;
+  --font-sans: var(--font-geist);
+  --font-display: var(--font-eb-garamond);
   --font-mono: var(--font-geist-mono);
 }
 
 html {
-  /* fallback color while fixed bg image loads */
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-manrope), Manrope, ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-geist), Geist, ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
 }
 
 body {
-  /* transparent so the fixed bg image (z-index -2) shows through */
-  background: transparent;
+  background-color: var(--background);
+  /* Subtle grain texture — 3% noise */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
   color: var(--foreground);
   min-height: 100vh;
   overflow-x: hidden;
 }
 
 /* ============================================
-   Ambient background — orange void
-   ============================================ */
-.mesh-bg {
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  background:
-    radial-gradient(circle at 20% 15%, rgba(255, 92, 0, 0.10), transparent 50%),
-    radial-gradient(circle at 80% 85%, rgba(255, 92, 0, 0.08), transparent 50%),
-    var(--background);
-}
-
-.grain {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0.025;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-.grid-pattern {
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-  background-size: 48px 48px;
-}
-
-.hero-orbs {
-  position: relative;
-}
-/* hero-orbs::before removed — the bg photo now provides hero atmosphere */
-
-/* ============================================
-   Surface primitives — opaque cards (Obsidian-style)
-   ============================================ */
-.glass-base {
-  background: var(--surface-container-low);
-  border: 1px solid var(--glass-border);
-}
-
-.glass-card {
-  background: var(--surface-container-low);
-  border: 1px solid var(--glass-border);
-  transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-}
-.glass-card:hover {
-  background: var(--surface-container);
-}
-
-.glass-elevated {
-  background: var(--surface-container-highest);
-  border: 1px solid var(--glass-border-strong);
-}
-
-.glass-nav {
-  background: rgba(19, 19, 19, 0.10);
-  border-bottom: 1px solid var(--glass-border);
-  backdrop-filter: blur(24px) saturate(160%);
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
-}
-
-.glass-pill {
-  background: rgba(53, 53, 52, 0.50);
-  border: 1px solid var(--glass-border-strong);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-/* ============================================
-   Typography — Bebas Neue display + Manrope body
+   Typography — EB Garamond display + Geist body
    ============================================ */
 .display {
-  font-family: var(--font-bebas-neue), "Bebas Neue", sans-serif;
+  font-family: var(--font-eb-garamond), "EB Garamond", serif;
   font-weight: 400;
-  letter-spacing: 0;
-  line-height: 0.95;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: var(--primary-text);
 }
 
-.label-mono {
-  font-family: var(--font-manrope), Manrope, ui-sans-serif, sans-serif;
+.headline {
+  font-family: var(--font-eb-garamond), "EB Garamond", serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--on-surface);
+}
+
+.mono-label {
+  font-family: var(--font-geist-mono), "Geist Mono", ui-monospace, monospace;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--on-surface-variant);
+}
+
+.label-caps {
+  font-family: var(--font-geist), Geist, ui-sans-serif, sans-serif;
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.1em;
+  line-height: 1.33;
   color: var(--on-surface-variant);
 }
 
 /* ============================================
-   Buttons (Obsidian: solid orange with glow)
+   Glass primitives — 16px backdrop blur + gold border
    ============================================ */
-.btn-primary {
-  background: var(--accent);
-  color: var(--on-primary);
-  font-weight: 700;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 0 30px rgba(255, 92, 0, 0.30);
+.glass-panel {
+  background: var(--glass-fill);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-inset);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.btn-primary:hover {
-  background: var(--primary-fixed);
-  box-shadow: 0 0 40px rgba(255, 92, 0, 0.45);
+.glass-panel:hover {
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--glass-inset-hover), var(--gold-glow);
 }
 
-.btn-ghost {
+.glass-pill {
+  background: var(--glass-fill);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-nav {
+  background: rgba(11, 11, 12, 0.55);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border-bottom: 1px solid rgba(74, 70, 63, 0.30);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0), 0 25px 50px -12px rgba(229, 194, 129, 0.05);
+}
+
+/* ============================================
+   Buttons — Pill shaped, gold primary, glass secondary
+   ============================================ */
+.btn-gold {
+  background: var(--secondary);
+  color: var(--on-primary-fixed);
+  font-family: var(--font-geist-mono), monospace;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 30px rgba(229, 194, 129, 0.15);
+}
+.btn-gold:hover {
+  background: var(--secondary-fixed);
+  transform: scale(1.04);
+  box-shadow: 0 0 40px rgba(229, 194, 129, 0.30);
+}
+
+.btn-glass {
+  background: var(--glass-fill);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  color: var(--on-surface);
+  font-family: var(--font-geist-mono), monospace;
+  font-weight: 500;
+  font-size: 0.8125rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-glass:hover {
+  color: var(--secondary);
+  border-color: var(--glass-border-hover);
+}
+
+/* Hero overlay — diagonal scrim so photo bleeds through on right */
+.hero-bg-overlay {
+  background: linear-gradient(135deg,
+    rgba(11, 11, 12, 0.95) 0%,
+    rgba(11, 11, 12, 0.80) 40%,
+    rgba(11, 11, 12, 0.20) 100%);
+}
+
+/* Hairline divider */
+.hairline-gold {
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(229, 194, 129, 0.30),
+    transparent);
+}
+
+/* Minimal underline input */
+.minimal-input {
   background: transparent;
-  border: 1px solid var(--glass-border-strong);
-  color: var(--foreground);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border: none;
+  border-bottom: 1px solid rgba(229, 194, 129, 0.20);
+  border-radius: 0;
+  color: var(--on-surface);
+  padding: 0.5rem 0;
+  width: 100%;
+  font-family: var(--font-geist), Geist, sans-serif;
+  font-size: 1rem;
+  transition: all 0.3s ease;
 }
-.btn-ghost:hover {
-  background: var(--surface-container-highest);
+.minimal-input:focus {
+  outline: none;
+  border-bottom: 2px solid var(--secondary);
 }
-
-/* Hire-me button: orange ghost with accent border */
-.btn-accent-ghost {
-  background: rgba(255, 92, 0, 0.15);
-  border: 1px solid rgba(255, 92, 0, 0.45);
-  color: var(--accent);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.btn-accent-ghost:hover {
-  background: rgba(255, 92, 0, 0.25);
-}
-
-/* ============================================
-   Glow utilities
-   ============================================ */
-.text-glow {
-  text-shadow: 0 0 40px rgba(255, 92, 0, 0.55);
-}
-
-.card-glow {
-  transition: box-shadow 0.4s ease;
-}
-.card-glow:hover {
-  box-shadow: 0 0 40px rgba(255, 92, 0, 0.10);
-}
-
-.shadow-glow {
-  box-shadow: var(--shadow-glow);
-}
-
-.accent-gradient {
-  background: var(--accent);
+.minimal-input::placeholder {
+  color: rgba(204, 198, 188, 0.50);
 }
 
 /* ============================================
-   Ken Burns — slow continuous zoom + pan on hero photo
+   Status — Electric lime breathing pulse
    ============================================ */
-@keyframes ken-burns {
-  0%   { transform: scale(1.0) translate(0, 0); }
-  50%  { transform: scale(1.08) translate(-0.5%, -0.5%); }
-  100% { transform: scale(1.0) translate(0, 0); }
+@keyframes pulse-status {
+  0%   { box-shadow: 0 0 0 0 rgba(188, 244, 101, 0.45); }
+  70%  { box-shadow: 0 0 0 8px rgba(188, 244, 101, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(188, 244, 101, 0); }
 }
-.ken-burns {
-  animation: ken-burns 30s ease-in-out infinite;
-  will-change: transform;
-}
-
-/* Cinematic vignette over hero photo */
-.cinematic-vignette {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse at center, transparent 30%, rgba(0, 0, 0, 0.55) 100%);
-}
-
-/* Smooth scroll for anchor links */
-html {
-  scroll-behavior: smooth;
+.status-dot {
+  background-color: var(--tertiary-fixed);
+  animation: pulse-status 2s infinite;
 }
 
 /* ============================================
@@ -278,25 +264,28 @@ html {
   animation-play-state: paused;
 }
 
-@keyframes marquee-rev {
-  from { transform: translateX(-50%); }
-  to   { transform: translateX(0); }
-}
-.marquee-track-rev {
-  display: flex;
-  width: max-content;
-  animation: marquee-rev 42s linear infinite;
+/* ============================================
+   Hairline gradient divider between sections
+   ============================================ */
+.divider-gold {
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(229, 194, 129, 0.20),
+    transparent);
 }
 
 /* ============================================
-   Pulse dot for "available"
+   Footer giant watermark
    ============================================ */
-@keyframes soft-pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.4); }
-}
-.pulse-dot {
-  animation: soft-pulse 2.4s ease-in-out infinite;
+.watermark {
+  font-family: var(--font-eb-garamond), "EB Garamond", serif;
+  color: rgba(230, 226, 224, 0.06);
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
 }
 
 /* ============================================
@@ -304,19 +293,18 @@ html {
    ============================================ */
 @media (prefers-reduced-motion: reduce) {
   .marquee-track,
-  .marquee-track-rev,
-  .pulse-dot {
+  .status-dot {
     animation: none;
   }
 }
 
 *:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  outline: 2px solid var(--secondary);
+  outline-offset: 3px;
   border-radius: 4px;
 }
 
 ::selection {
-  background: var(--accent-soft);
-  color: var(--foreground);
+  background: rgba(229, 194, 129, 0.30);
+  color: var(--secondary);
 }

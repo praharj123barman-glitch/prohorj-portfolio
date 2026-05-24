@@ -1,135 +1,144 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Eye } from "lucide-react";
+import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-const tagline = "I'm Prohorj, a Full-Stack Developer";
-
-// Split headline into words so each can animate individually
-const headlineParts: Array<{ text: string }> = [
-  { text: "Crafting" },
-  { text: "digital" },
-  { text: "products" },
-  { text: "with" },
-  { text: "obsessive" },
-  { text: "attention" },
-  { text: "to" },
-  { text: "detail." },
+const clientTags = [
+  "NEXT.JS",
+  "PAYLOAD CMS",
+  "STRIPE CONNECT",
+  "TRPC",
+  "POSTGRES",
+  "TYPESCRIPT",
+  "REACT",
+  "TAILWIND",
+  "FRAMER MOTION",
+  "VERCEL",
 ];
 
-const wordVariants = {
-  hidden: { opacity: 0, y: 28, filter: "blur(8px)" },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.9, ease },
-  },
-};
-
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.09, delayChildren: 0.25 },
-  },
-};
-
 export function Hero() {
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollY } = useScroll();
+  const photoY = useTransform(scrollY, [0, 800], [0, 240]);
+  const photoScale = useTransform(scrollY, [0, 800], [1.1, 1.0]);
+
   return (
-    <>
-      <section className="hero-orbs relative flex min-h-[90vh] flex-col items-center justify-center px-5 pb-32 pt-40 text-center sm:px-8 sm:pt-48 lg:px-20">
-        {/* Availability pill */}
-        <motion.div
-          initial={{ opacity: 0, y: 10, scale: 0.96 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.7, ease, delay: 0.1 }}
-          className="glass-elevated mb-8 inline-flex items-center gap-2 rounded-full px-4 py-1.5"
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="pulse-dot absolute inline-flex h-full w-full rounded-full bg-accent/60" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
-          </span>
-          <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-on-surface-variant">
-            Available for new projects
-          </span>
-        </motion.div>
+    <section
+      ref={heroRef}
+      id="home"
+      className="relative flex min-h-[100svh] items-center overflow-hidden pt-24"
+    >
+      {/* Background image — right-side bleed, parallax */}
+      <motion.div
+        aria-hidden
+        style={{ y: photoY, scale: photoScale }}
+        className="absolute inset-0 z-0"
+      >
+        <Image
+          src="/hero-bg.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-right-top opacity-60 saturate-50"
+          style={{ mixBlendMode: "luminosity" }}
+        />
+        <div className="hero-bg-overlay absolute inset-0" />
+        {/* Grain */}
+        <div
+          aria-hidden
+          className="absolute inset-0 mix-blend-overlay opacity-30"
+          style={{
+            backgroundImage:
+              "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E\")",
+          }}
+        />
+        {/* Bottom gold hairline */}
+        <div className="hairline-gold absolute bottom-0 h-px w-full" />
+      </motion.div>
 
-        {/* Headline — word-by-word staggered reveal */}
-        <motion.h1
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
-          className="display mx-auto mb-6 max-w-3xl text-[clamp(2.25rem,6vw,4.75rem)] leading-[0.95] text-foreground"
-          aria-label="Crafting digital products with obsessive attention to detail."
-        >
-          {headlineParts.map((word, i) => (
-            <motion.span
-              key={i}
-              variants={wordVariants}
-              className="mr-[0.25em] inline-block"
-              style={{ textShadow: "0 2px 24px rgba(0,0,0,0.7)" }}
-            >
-              {word.text}
-            </motion.span>
-          ))}
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease, delay: 1.2 }}
-          className="mx-auto mb-10 max-w-2xl text-base leading-relaxed text-on-surface-variant sm:text-lg"
-          style={{ textShadow: "0 2px 12px rgba(0,0,0,0.5)" }}
-        >
-          I design and build polished web experiences end to end. From the
-          database to the last pixel.
-        </motion.p>
-
-        {/* CTAs */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease, delay: 1.4 }}
-          className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
-        >
-          <motion.a
-            href="#projects"
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ duration: 0.3, ease }}
-            className="btn-primary flex items-center gap-2 rounded-full px-8 py-3.5 text-sm"
+      <div className="relative z-10 mx-auto grid w-full max-w-[1240px] grid-cols-1 items-center gap-8 px-6 md:grid-cols-12 md:px-16">
+        <div className="flex flex-col items-start gap-6 md:col-span-7">
+          {/* Status pill — lime breathing dot */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease, delay: 0.2 }}
+            className="glass-pill flex items-center gap-3 rounded-full px-4 py-2"
           >
-            <Eye className="h-4 w-4" />
-            See my work
-          </motion.a>
-          <motion.a
-            href="mailto:praharj123barman@gmail.com"
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ duration: 0.3, ease }}
-            className="btn-ghost flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-medium"
-          >
-            Let&apos;s talk
-          </motion.a>
-        </motion.div>
-      </section>
-
-      {/* Single marquee — Bebas Neue scrolling tagline */}
-      <div className="mb-24 flex w-full overflow-hidden whitespace-nowrap border-y border-white/5 bg-surface-container/80 py-4 backdrop-blur-md">
-        <div className="marquee-track items-center gap-8 opacity-60">
-          {Array.from({ length: 12 }).map((_, i) => (
-            <span
-              key={`m-${i}`}
-              className="display flex shrink-0 items-center gap-8 text-3xl text-on-surface-variant sm:text-4xl"
-            >
-              {tagline}
-              <span className="text-accent">✦</span>
+            <span className="status-dot h-2 w-2 rounded-full" />
+            <span className="mono-label">
+              Booking June 2026 · 1 slot left
             </span>
-          ))}
+          </motion.div>
+
+          {/* Headline — EB Garamond serif */}
+          <motion.h1
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease, delay: 0.35 }}
+            className="display text-[clamp(2.5rem,7vw,5rem)] leading-[1.05]"
+          >
+            Crafting digital products with{" "}
+            <em className="not-italic text-secondary">obsessive</em> attention
+            to detail.
+          </motion.h1>
+
+          {/* Subhead */}
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease, delay: 0.55 }}
+            className="max-w-lg text-base leading-[1.6] text-secondary/80 sm:text-lg"
+            style={{ fontFamily: "var(--font-geist), Geist, sans-serif" }}
+          >
+            Full-stack developer building marketplaces, SaaS, and tools that
+            feel alive.
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease, delay: 0.75 }}
+            className="mt-4 flex flex-wrap gap-4"
+          >
+            <a
+              href="#contact"
+              className="btn-gold interactive rounded-full px-8 py-3"
+            >
+              Book a 20-min intro call
+            </a>
+            <a
+              href="#work"
+              className="btn-glass interactive rounded-full px-8 py-3"
+            >
+              See case studies
+            </a>
+          </motion.div>
         </div>
       </div>
-    </>
+
+      {/* Bottom tech-tag marquee — replaces the placeholder client marquee */}
+      <div className="glass-panel absolute bottom-0 z-10 w-full border-x-0 border-b-0 border-t py-6">
+        <div className="overflow-hidden">
+          <div className="marquee-track items-center gap-16 px-8 opacity-50">
+            {Array.from({ length: 4 }).map((_, dup) =>
+              clientTags.map((t, i) => (
+                <span
+                  key={`${dup}-${i}`}
+                  className="label-caps shrink-0 whitespace-nowrap"
+                >
+                  {t}
+                </span>
+              )),
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
