@@ -56,7 +56,8 @@ export function Services() {
             style={{ fontFamily: "var(--font-geist), Geist, sans-serif" }}
           >
             Pick the engagement that fits where you are. All work is fixed-fee
-            and milestone-based — no hourly billing.
+            and milestone-based. UPI for India, bank transfer for international
+            clients.
           </p>
         </motion.div>
 

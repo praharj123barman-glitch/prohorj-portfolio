@@ -13,7 +13,7 @@ const items = [
   },
   {
     q: "How does payment work?",
-    a: "Fixed-fee, milestone-based. Half on kickoff, the rest on launch. Stripe or wire — your call. No hourly billing.",
+    a: "Fixed-fee, milestone-based. Half on kickoff, the rest on launch. UPI for India, bank transfer for international clients. No hourly billing, no surprise invoices.",
   },
   {
     q: "Do you work with my existing team?",
