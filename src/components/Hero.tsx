@@ -62,19 +62,6 @@ export function Hero() {
 
       <div className="relative z-10 mx-auto grid w-full max-w-[1240px] grid-cols-1 items-center gap-8 px-6 md:grid-cols-12 md:px-16">
         <div className="flex flex-col items-start gap-6 md:col-span-7">
-          {/* Status pill — lime breathing dot */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease, delay: 0.2 }}
-            className="glass-pill flex items-center gap-3 rounded-full px-4 py-2"
-          >
-            <span className="status-dot h-2 w-2 rounded-full" />
-            <span className="mono-label">
-              Booking June 2026 · 1 slot left
-            </span>
-          </motion.div>
-
           {/* Headline — EB Garamond serif */}
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
