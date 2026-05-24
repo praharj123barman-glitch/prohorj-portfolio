@@ -39,20 +39,20 @@ export function Hero() {
       >
         <Image
           src="/hero-bg.jpg"
-          alt=""
+          alt="Prohorj at the National Institute of Technology Karnataka campus"
           fill
           priority
           sizes="100vw"
-          className="object-cover opacity-75 saturate-75"
-          style={{ objectPosition: "85% 22%" }}
+          className="object-cover opacity-85 saturate-100"
+          style={{ objectPosition: "75% 8%" }}
         />
-        {/* Diagonal scrim — strong dark on left for text legibility, near-clear on right so face is fully visible */}
+        {/* Diagonal scrim — strong dark on left for text legibility, near-clear on right so NIT building + face stay visible */}
         <div
           aria-hidden
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(105deg, rgba(11,11,12,0.96) 0%, rgba(11,11,12,0.88) 30%, rgba(11,11,12,0.45) 60%, rgba(11,11,12,0.0) 100%)",
+              "linear-gradient(105deg, rgba(11,11,12,0.96) 0%, rgba(11,11,12,0.85) 28%, rgba(11,11,12,0.35) 58%, rgba(11,11,12,0.0) 100%)",
           }}
         />
         {/* Grain */}
