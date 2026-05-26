@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { MagneticAnchor } from "./motion-fx";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -45,12 +46,12 @@ export function Navbar() {
           ))}
         </ul>
 
-        <a
+        <MagneticAnchor
           href="#contact"
           className="btn-gold hidden rounded-full px-6 py-2 md:inline-block"
         >
           Book a call
-        </a>
+        </MagneticAnchor>
 
         <button
           aria-label={open ? "Close menu" : "Open menu"}

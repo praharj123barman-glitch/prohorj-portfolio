@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { useRef } from "react";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -68,7 +69,14 @@ const projects: Project[] = [
 
 export function Work() {
   return (
-    <section id="work" className="relative px-6 py-32 md:px-16">
+    <motion.section
+      id="work"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className="relative px-6 py-32 md:px-16"
+    >
       <div className="mx-auto max-w-[1240px]">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -99,66 +107,100 @@ export function Work() {
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {projects.map((p, i) => (
-            <motion.a
-              key={p.name}
-              href={p.live}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Open ${p.name} live`}
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease, delay: 0.15 + i * 0.08 }}
-              className="group interactive block"
-            >
-              <div className="glass-panel relative mb-5 aspect-[16/10] overflow-hidden rounded-xl">
-                <Image
-                  src={p.image}
-                  alt={p.name}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover object-top transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
-                  priority={i < 2}
-                />
-                {/* gold pill year top-left */}
-                <span className="glass-pill mono-label absolute left-4 top-4 rounded-full px-3 py-1 !text-[11px] text-secondary">
-                  {p.year}
-                </span>
-                {/* arrow top-right */}
-                <span className="glass-pill absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full text-on-surface transition-all group-hover:bg-secondary group-hover:text-on-primary-fixed">
-                  <ArrowUpRight className="h-4 w-4" />
-                </span>
-                {/* bottom scrim */}
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/60 to-transparent" />
-              </div>
-
-              <div className="flex flex-col gap-3">
-                <div className="flex items-baseline justify-between gap-4">
-                  <h3
-                    className="text-xl text-on-surface transition-colors group-hover:text-secondary md:text-2xl"
-                    style={{
-                      fontFamily:
-                        "var(--font-eb-garamond), 'EB Garamond', serif",
-                    }}
-                  >
-                    {p.name}
-                  </h3>
-                </div>
-                <p className="text-sm text-on-surface-variant">{p.tagline}</p>
-                <div className="mt-1 flex flex-wrap gap-1.5">
-                  {p.stack.map((s) => (
-                    <span
-                      key={s}
-                      className="glass-pill mono-label rounded-full px-2.5 py-0.5 !text-[11px]"
-                    >
-                      {s}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.a>
+            <ProjectCard key={p.name} p={p} i={i} />
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
+  );
+}
+
+function ProjectCard({ p, i }: { p: Project; i: number }) {
+  const ref = useRef<HTMLAnchorElement>(null);
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+  const rx = useSpring(useTransform(my, [-0.5, 0.5], [6, -6]), {
+    stiffness: 180,
+    damping: 18,
+  });
+  const ry = useSpring(useTransform(mx, [-0.5, 0.5], [-6, 6]), {
+    stiffness: 180,
+    damping: 18,
+  });
+
+  function onMove(e: React.MouseEvent) {
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    mx.set((e.clientX - rect.left) / rect.width - 0.5);
+    my.set((e.clientY - rect.top) / rect.height - 0.5);
+  }
+  function onLeave() {
+    mx.set(0);
+    my.set(0);
+  }
+
+  return (
+    <motion.a
+      ref={ref}
+      href={p.live}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Open ${p.name} live`}
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease, delay: 0.15 + i * 0.08 }}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      style={{
+        rotateX: rx,
+        rotateY: ry,
+        transformStyle: "preserve-3d",
+        perspective: 1000,
+      }}
+      className="group interactive block"
+    >
+      <div className="glass-panel relative mb-5 aspect-[16/10] overflow-hidden rounded-xl">
+        <Image
+          src={p.image}
+          alt={p.name}
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="object-cover object-top transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
+          priority={i < 2}
+        />
+        <span className="glass-pill mono-label absolute left-4 top-4 rounded-full px-3 py-1 !text-[11px] text-secondary">
+          {p.year}
+        </span>
+        <span className="glass-pill absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full text-on-surface transition-all group-hover:bg-secondary group-hover:text-on-primary-fixed">
+          <ArrowUpRight className="h-4 w-4" />
+        </span>
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/60 to-transparent" />
+      </div>
+
+      <div className="flex flex-col gap-3">
+        <div className="flex items-baseline justify-between gap-4">
+          <h3
+            className="text-xl text-on-surface transition-colors group-hover:text-secondary md:text-2xl"
+            style={{
+              fontFamily: "var(--font-eb-garamond), 'EB Garamond', serif",
+            }}
+          >
+            {p.name}
+          </h3>
+        </div>
+        <p className="text-sm text-on-surface-variant">{p.tagline}</p>
+        <div className="mt-1 flex flex-wrap gap-1.5">
+          {p.stack.map((s) => (
+            <span
+              key={s}
+              className="glass-pill mono-label rounded-full px-2.5 py-0.5 !text-[11px]"
+            >
+              {s}
+            </span>
+          ))}
+        </div>
+      </div>
+    </motion.a>
   );
 }

@@ -34,7 +34,14 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" className="relative px-6 py-32 md:px-16">
+    <motion.section
+      id="services"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className="relative px-6 py-32 md:px-16"
+    >
       <div className="mx-auto max-w-[1240px]">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -95,6 +102,6 @@ export function Services() {
           })}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

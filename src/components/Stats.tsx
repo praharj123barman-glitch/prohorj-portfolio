@@ -83,7 +83,13 @@ function TiltCard({ children, index }: { children: React.ReactNode; index: numbe
 
 export function Stats() {
   return (
-    <section className="relative z-10 px-6 py-32 md:px-16">
+    <motion.section
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className="relative z-10 px-6 py-32 md:px-16"
+    >
       <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
         {stats.map((s, i) => (
           <TiltCard key={s.label} index={i}>
@@ -99,6 +105,6 @@ export function Stats() {
           </TiltCard>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 }

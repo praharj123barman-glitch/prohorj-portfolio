@@ -54,7 +54,13 @@ const stack: Tech[] = [
 
 export function TechStack() {
   return (
-    <section className="relative px-6 py-32 md:px-16">
+    <motion.section
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className="relative px-6 py-32 md:px-16"
+    >
       <div className="mx-auto max-w-[1240px]">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -113,6 +119,6 @@ export function TechStack() {
           })}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

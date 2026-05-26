@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { MagneticAnchor, WordRise } from "./motion-fx";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -70,17 +71,15 @@ export function Hero() {
 
       <div className="relative z-10 mx-auto grid w-full max-w-[1240px] grid-cols-1 items-center gap-8 px-6 md:grid-cols-12 md:px-16">
         <div className="flex flex-col items-start gap-6 md:col-span-6 lg:col-span-5">
-          {/* Headline — EB Garamond serif */}
-          <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease, delay: 0.35 }}
-            className="display text-[clamp(2.5rem,7vw,5rem)] leading-[1.05]"
-          >
-            Crafting digital products with{" "}
-            <em className="not-italic text-secondary">obsessive</em> attention
-            to detail.
-          </motion.h1>
+          {/* Headline — EB Garamond serif, word-by-word reveal */}
+          <h1 className="display text-[clamp(2.5rem,7vw,5rem)] leading-[1.05]">
+            <WordRise
+              text="Crafting digital products with obsessive attention to detail."
+              delay={0.25}
+              highlight="obsessive"
+              highlightClassName="not-italic text-secondary"
+            />
+          </h1>
 
           {/* Subhead */}
           <motion.p
@@ -101,18 +100,18 @@ export function Hero() {
             transition={{ duration: 0.7, ease, delay: 0.75 }}
             className="mt-4 flex flex-wrap gap-4"
           >
-            <a
+            <MagneticAnchor
               href="#contact"
               className="btn-gold interactive rounded-full px-8 py-3"
             >
               Book a 20-min intro call
-            </a>
-            <a
+            </MagneticAnchor>
+            <MagneticAnchor
               href="#work"
               className="btn-glass interactive rounded-full px-8 py-3"
             >
               See case studies
-            </a>
+            </MagneticAnchor>
           </motion.div>
         </div>
       </div>

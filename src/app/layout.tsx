@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CustomCursor } from "@/components/CustomCursor";
+import { SmoothScroll } from "@/components/SmoothScroll";
 
 const ebGaramond = EB_Garamond({
   variable: "--font-eb-garamond",
@@ -52,6 +53,7 @@ export default function RootLayout({
       className={`${ebGaramond.variable} ${geist.variable} ${geistMono.variable} dark`}
     >
       <body className="min-h-screen flex flex-col">
+        <SmoothScroll />
         <CustomCursor />
         <Navbar />
         <main className="flex-1">{children}</main>

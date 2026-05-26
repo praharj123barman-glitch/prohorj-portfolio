@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Mail, ArrowUpRight } from "lucide-react";
 import { useState } from "react";
+import { MagneticButton } from "./motion-fx";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -48,7 +49,14 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="relative px-6 py-32 md:px-16">
+    <motion.section
+      id="contact"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className="relative px-6 py-32 md:px-16"
+    >
       <div className="mx-auto max-w-[1240px]">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -135,13 +143,13 @@ export function Contact() {
                 className="minimal-input resize-none"
               />
             </div>
-            <button
+            <MagneticButton
               type="submit"
               className="btn-gold mt-2 inline-flex items-center justify-center gap-2 self-start rounded-full px-8 py-3"
             >
               {sent ? "Opening email…" : "Send inquiry"}
               <ArrowUpRight className="h-4 w-4" />
-            </button>
+            </MagneticButton>
           </motion.form>
 
           {/* Right: Direct + Socials */}
@@ -202,6 +210,6 @@ export function Contact() {
           </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
