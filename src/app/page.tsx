@@ -12,9 +12,9 @@ export default function HomePage() {
     <>
       <Hero />
       <Stats />
-      <Work />
       <Services />
       <TechStack />
+      <Work />
       <Process />
       <FAQ />
       <Contact />
