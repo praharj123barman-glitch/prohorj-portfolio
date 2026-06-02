@@ -18,6 +18,14 @@ type Project = {
 
 const projects: Project[] = [
   {
+    name: "TicketFlow",
+    tagline: "Concurrent event-booking engine — zero double-sells",
+    stack: ["FastAPI", "PostgreSQL", "Redis", "Stripe", "Docker", "AWS"],
+    image: "/projects/ticketflow.png",
+    live: "https://ticketflow-prohorj.duckdns.org",
+    year: "2026",
+  },
+  {
     name: "MultiMart",
     tagline: "Multi-tenant e-commerce platform",
     stack: ["Next.js", "Payload CMS", "Stripe Connect", "MongoDB"],

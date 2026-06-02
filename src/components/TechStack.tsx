@@ -12,9 +12,15 @@ import {
   SiNodedotjs,
   SiPython,
   SiDjango,
+  SiFastapi,
   SiPrisma,
   SiPostgresql,
   SiMongodb,
+  SiRedis,
+  SiSqlalchemy,
+  SiDocker,
+  SiNginx,
+  SiVite,
   SiStripe,
   SiVercel,
   SiGithub,
@@ -23,6 +29,7 @@ import {
   SiTrpc,
   SiSupabase,
 } from "react-icons/si";
+import { FaAws } from "react-icons/fa";
 import type { IconType } from "react-icons";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -38,11 +45,18 @@ const stack: Tech[] = [
   { name: "tRPC", Icon: SiTrpc, color: "#2596BE" },
   { name: "Node.js", Icon: SiNodedotjs, color: "#5FA04E" },
   { name: "Python", Icon: SiPython, color: "#3776AB" },
+  { name: "FastAPI", Icon: SiFastapi, color: "#009688" },
   { name: "Django", Icon: SiDjango, color: "#44B78B" },
   { name: "Prisma", Icon: SiPrisma, color: "#5A67D8" },
   { name: "PostgreSQL", Icon: SiPostgresql, color: "#4169E1" },
+  { name: "SQLAlchemy", Icon: SiSqlalchemy, color: "#D71F00" },
+  { name: "Redis", Icon: SiRedis, color: "#FF4438" },
   { name: "MongoDB", Icon: SiMongodb, color: "#47A248" },
   { name: "Supabase", Icon: SiSupabase, color: "#3ECF8E" },
+  { name: "Docker", Icon: SiDocker, color: "#2496ED" },
+  { name: "Nginx", Icon: SiNginx, color: "#009639" },
+  { name: "AWS", Icon: FaAws, color: "#FF9900" },
+  { name: "Vite", Icon: SiVite, color: "#646CFF" },
   { name: "Stripe", Icon: SiStripe, color: "#635BFF" },
   { name: "Vercel", Icon: SiVercel, color: "#FFFFFF" },
   { name: "GitHub", Icon: SiGithub, color: "#FFFFFF" },
